@@ -26,14 +26,16 @@ body {
 
 $border: solid 5px rgb(91, 91, 91);
 $border-radius: 25px;
+$border-radius-medium: 12px;
 
 :root {
   --bg-color: #b16c4d;
-  --ui-bg: #FFF7F3;
+  --ui-bg: #FBEACE;
+  --card-bg: #FEF6EC;
 
-  --accent: #F47D84;
+  --accent: #FF7879;
   --secondary-accent: #FFD6A5;
-  --button-highlight: #EFAEA9;
+  --button-highlight: #E1908A;
 
   --text-primary: #3E3E3E;
   --text-secondary: #7A6F68;
@@ -44,6 +46,7 @@ $border-radius: 25px;
 [data-theme="dark"] {
   --bg-color: #2E2725;
   --ui-bg: #3A3230;
+  --card-bg: #613e13;
 
   --accent: #FF8F91;
   --secondary-accent: #FFC67C;
@@ -62,9 +65,10 @@ body {
 
 h2 {
   font-family: 'Sweetie Bubble Gum', cursive;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   margin: 0;
-  color: var(--text-primary);
+  color: white;
+  text-transform: uppercase;
 }
 
 h3 {
@@ -84,42 +88,60 @@ p {
   left: 50%;
   position: absolute;
   transform: translate(-50%, -50%);
-  background-color: var(--ui-bg);
   max-width: 1200px;
-  font-family: "Sweetie Bubble Gum", sans-serif;
-  border: $border;
-  border-radius: $border-radius;
-  z-index: 9999;
-  flex-direction: column;
-  overflow: hidden;
+  z-index: 999;
+
+  .content-wrapper {
+    @include centered;
+    overflow: hidden;
+    border-radius: $border-radius;
+    border: $border;
+    background-color: var(--ui-bg);
+    flex-direction: column;
+    position: relative;
+
+  }
+
+  .close-btn {
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    background-color: var(--button-highlight);
+    color: var(--text-primary);
+    width: 40px;
+    height: 40px;
+    border: $border;
+    border-radius: 50%;
+    z-index: 1000; // stays above all content
+    cursor: pointer;
+  }
 
   .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include centered;
     width: 100%;
+    height: 50px;
     background-color: var(--accent);
-    .close-btn {
-      color: var(--text-primary);
-      background-color: var(--button-highlight);
-      width: 30px;
-      height: 30px;
-      border: $border;
-    }
+    
+
   }
 
   .modal-content {
     display: flex;
-    gap: 0.8rem;
+    gap: 1rem;
+    padding: 30px;
+    height: 400px;
+    flex-wrap: wrap;
+    overflow-y: auto;
+
 
     .content-card {
-          background-color: #41b712;
+      background-color: var(--card-bg);
       border: 1px solid #E2D2C6;
-      border-radius: 12px;
-      padding: 0.5rem;
+      border-radius: $border-radius-medium;
+      padding: 0.8rem;
       text-align: center;
       width: 48%;
-      cursor: pointer;
+
       img {
         width: 100%;
         object-fit: cover;
