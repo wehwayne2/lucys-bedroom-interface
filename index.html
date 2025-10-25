@@ -15,13 +15,26 @@
   </button>
 
   <section class="modal">
-    <button class="close-btn">X</button>
-    <div class="content-wrapper">
-      <svg class="border-svg" preserveAspectRatio="none">
-        <rect x="0" y="0"  />
+    <button class="close-btn">
+      <svg width="50" height="50" viewBox="0 0 40 40">
+        <path d="M10,10 L30,30 M30,10 L10,30" stroke="var(--text-primary)" stroke-width="8" stroke-linecap="round" />
+        <path d="M10,10 L30,30 M30,10 L10,30" stroke="var(--border-color)" stroke-width="3" stroke-linecap="round" />
       </svg>
+    </button>
+    <div class="content-wrapper">
+      <!-- svgborder -->
+      <svg class="border-svg" preserveAspectRatio="none">
+        <rect x="0" y="0" />
+      </svg>
+      <!-- svgborder -->
       <div class="modal-header">
-        <h2>Memories</h2>
+        <div class="border-wrapper">
+          <svg class="border-svg" preserveAspectRatio="none">
+            <rect x="0" y="0" />
+          </svg>
+          <h2>Memories</h2>
+        </div>
+
       </div>
 
       <div class="modal-content">
