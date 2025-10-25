@@ -37,7 +37,7 @@ $border-radius-medium: 12px;
   --secondary-accent: #FFD6A5;
   --button-highlight: #E1908A;
 
-  --text-primary: #3E3E3E;
+  --text-primary: #674f3d;
   --text-secondary: #7A6F68;
 
   --border-color: #E2D2C6;
@@ -91,18 +91,7 @@ p {
   max-width: 1200px;
   z-index: 999;
 
-  .content-wrapper {
-    @include centered;
-    overflow: hidden;
-    border-radius: $border-radius;
-    border: $border;
-    background-color: var(--ui-bg);
-    flex-direction: column;
-    position: relative;
-
-  }
-
-  .close-btn {
+    .close-btn {
     position: absolute;
     top: -12px;
     left: -12px;
@@ -116,14 +105,33 @@ p {
     cursor: pointer;
   }
 
-  .modal-header {
+  .content-wrapper {
     @include centered;
-    width: 100%;
-    height: 50px;
-    background-color: var(--accent);
-    
 
+border-radius: $border-radius;
+overflow: hidden;
+    
+    flex-direction: column;
+    position: relative;
+.border-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+    width: 100%;
+  height: 100%;
+  pointer-events: none; 
+   rect {
+        width: 100%;
+  height: 100%;
+    fill: none;             
+    stroke: var(--text-primary);      
+    stroke-width: 17.5;
+    stroke-dasharray: 150, 3, 420, 1, 100, 5;
+    rx: $border-radius;
+    ry: $border-radius;
   }
+}
 
   .modal-content {
     display: flex;
@@ -132,6 +140,8 @@ p {
     height: 400px;
     flex-wrap: wrap;
     overflow-y: auto;
+    border-radius: 0 0 $border-radius $border-radius;
+    background-color: var(--ui-bg);
 
 
     .content-card {
@@ -148,4 +158,19 @@ p {
       }
     }
   }
+  }
+
+
+
+  .modal-header {
+    @include centered;
+    width: 100%;
+    height: 50px;
+    background-color: var(--accent);
+    border-radius: $border-radius $border-radius 0 0;
+    
+
+  }
+
+
 }
