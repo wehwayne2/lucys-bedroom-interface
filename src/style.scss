@@ -34,7 +34,8 @@ $stroke-width-medium: 7px;
 :root {
   --bg-color: #b16c4d;
   --ui-bg: #FBEACE;
-  --card-bg: #FEF6EC;
+  --secondary-ui-bg: #fef3e1;
+  --card-bg: #fff6ea;
 
   --accent: #FF7879;
   --secondary-accent: #E2D2C6;
@@ -68,21 +69,23 @@ body {
 
 h2 {
   font-family: 'Sweetie Bubble Gum', cursive;
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin: 0;
-  color: white;
+  color: var(--border-color);
   text-transform: uppercase;
 }
 
 h3 {
   font-family: 'Sweetie Bubble Gum', cursive;
-  font-size: 1.2rem;
+  font-size: 1.8rem;
   margin: 0;
   color: var(--text-primary);
 }
 
 p {
   font-family: "Patrick Hand", sans-serif;
+  font-size: 1rem;
+  color: var(--text-primary);
 }
 
 .border-svg {
@@ -127,7 +130,7 @@ p {
   z-index: 999;
 
   .close-btn {
-   
+
     position: absolute;
     top: -12px;
     left: -70px;
@@ -139,75 +142,134 @@ p {
     border-radius: 50%;
     z-index: 1000; // stays above all content
     cursor: pointer;
+
+    img {
+      position: absolute;
+      left: 1px;
+      top: 1px;
+      width: 30px;
+      height: 30px;
+      opacity: 0.5;
+    }
+
     svg {
       position: absolute;
-    top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
   }
 
   .content-wrapper {
-
     flex-direction: column;
+    background: repeating-conic-gradient(from 45deg, var(--ui-bg) 0% 25%, var(--secondary-ui-bg) 0% 50%);
+    background-size: 35px 35px;
+    background-color: var(--secondary-ui-bg);
 
     svg rect {
       stroke-width: $stroke-width-big;
       stroke: var(--text-primary);
     }
 
+    .modal-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      width: 100%;
+      height: auto;
+      padding: 30px 0 10px 0;
+      background-color: var(--accent);
+      border-radius: $border-radius $border-radius 0 0;
+      border-bottom: solid var(--text-primary) $stroke-width-big-bottom;
+
+      .border-wrapper {
+        border-radius: 8px;
+      }
+
+      svg rect {
+        stroke-width: $stroke-width-medium;
+        stroke: var(--border-color);
+        rx: 8px;
+        ry: 8px;
+      }
+
+      h2 {
+        padding: 12px 15px 7px 15px;
+        text-align: center;
+      }
+    }
+
     .modal-content {
       display: flex;
       gap: 1rem;
       padding: 30px;
-      height: 400px;
+      margin: 13px;
+      height: 500px;
       flex-wrap: wrap;
       overflow-y: auto;
       border-radius: 0 0 $border-radius $border-radius;
-      background-color: var(--ui-bg);
 
-
-      .content-card {
-        background-color: var(--card-bg);
-        border: 1px solid var(--secondary-accent);
-        border-radius: $border-radius-medium;
-        padding: 0.8rem;
-        text-align: center;
+      .border-wrapper {
         width: 48%;
+        height: fit-content;
+        border-radius: $border-radius-medium;
 
-        img {
-          width: 100%;
-          object-fit: cover;
+        svg rect {
+          stroke-width: $stroke-width-big-bottom;
+          stroke: var(--text-primary);
+          rx: $border-radius-medium;
+          ry: $border-radius-medium;
+        }
+
+        .content-card {
+          background-color: var(--card-bg);
+          padding: 2rem 1.2rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+
+          .card {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+
+            .card-date {
+              background-color: var(--text-primary);
+              width: fit-content;
+              padding: 4px 6px 2px 6px;
+              font-family: 'Sweetie Bubble Gum', cursive;
+              font-size: 0.9rem;
+              color: var(--secondary-ui-bg);
+              border-radius: 7px 7px 0 0;
+            }
+
+            img {
+              width: 100%;
+              object-fit: cover;
+              border-radius: 0 7px 7px 7px;
+              border: solid 2px var(--text-primary)
+            }
+          }
+
+          .card-title {
+            width: fit-content;
+            height: 30px;
+            padding: 9px;
+            border-radius: 15px;
+            color: var(--accent);
+          }
+          
+          .card-description {
+            margin: 10px 0;
+          }
         }
       }
+
+
+
     }
   }
 
-  .modal-header {
-    display: flex;
-    align-items: baseline;
-    justify-content: center;
-    width: 100%;
-    height: auto;
-    padding: 30px 0 10px 0;
-    background-color: var(--accent);
-    border-radius: $border-radius $border-radius 0 0;
-    border-bottom: solid var(--text-primary) $stroke-width-big-bottom;
 
-    .border-wrapper {
-      border-radius: 8px;
-    }
-
-    svg rect {
-      stroke-width: $stroke-width-medium;
-      stroke: var(--border-color);
-      rx: 8px;
-      ry: 8px;
-    }
-
-    h2 {
-      padding: 12px 15px 7px 15px;
-      text-align: center;
-    }
-  }
 }
