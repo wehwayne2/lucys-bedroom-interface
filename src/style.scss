@@ -28,7 +28,7 @@ $border: 4px; //almost storke-width-big divide 2
 $border-radius: 25px;
 $border-radius-medium: 12.5px;
 $stroke-width-big: 10px;
-$stroke-width-big-bottom: 4px;
+$stroke-width-big-bottom: 5px;
 $stroke-width-medium: 7px;
 
 :root {
@@ -110,7 +110,6 @@ p {
     stroke: var(--text-primary);
   }
 }
-
 
 .content-wrapper,
 .border-wrapper {
@@ -209,12 +208,31 @@ p {
       flex-wrap: wrap;
       overflow-y: auto;
       border-radius: 0 0 $border-radius $border-radius;
-      position: relative;//dont overlay on scrollbar
-      z-index: 9;//dont overlay on scrollbar
+      position: relative; //dont overlay on scrollbar
+      z-index: 9; //dont overlay on scrollbar
+
+      //firebox
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent) var(--border-color);
+
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      &::-webkit-scrollbar-track {
+        width: 2px;
+        border-radius: 4px;
+        background-color: var(--border-color);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: var(--accent);
+        border-radius: 4px;
+      }
 
       .border-wrapper {
         width: 46%;
-        height: min-content;//that can fix bordersvg in firebox
+        height: min-content; //that can fix bordersvg in
         background-color: var(--card-bg);
         border-radius: $border-radius-medium;
         align-items: start;
@@ -226,7 +244,7 @@ p {
           ry: $border-radius-medium;
         }
 
-        .content-card {      
+        .content-card {
           padding: 2rem 1.2rem;
           display: flex;
           flex-direction: column;
@@ -269,19 +287,20 @@ p {
           }
         }
       }
-
-
-
     }
   }
-
-
 }
 
-
-
-/* Firefox */
-.modal-content {
-  scrollbar-width: thin;           
-  scrollbar-color: var(--accent) var(--card-bg); 
+#theme-toggle {
+  position: fixed;     
+  top: 20px;      
+  right: 20px;         
+  z-index: 10000;       
+  background: var(--accent);
+  color: var(--text-primary);
+  border: solid 2px var(--text-primary);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
 }
