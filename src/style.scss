@@ -39,7 +39,7 @@ $stroke-width-medium: 7px;
 
   --accent: #FF7879;
   --secondary-accent: #E2D2C6;
-  --button-highlight: #E1908A;
+  --button-bg: #E1908A;
 
   --text-primary: #714A4F;
   --text-secondary: #000000;
@@ -52,9 +52,9 @@ $stroke-width-medium: 7px;
   --ui-bg: #3A3230;
   --card-bg: #613e13;
 
-  --accent: #FF8F91;
+  --accent: #395e9e;
   --secondary-accent: #FFC67C;
-  --button-highlight: #EFAEA9;
+  --button-bg: #EFAEA9;
 
   --text-primary: #F2E5DD;
   --text-secondary: #C4B4A8;
@@ -134,7 +134,7 @@ p {
     position: absolute;
     top: -12px;
     left: -70px;
-    background-color: var(--button-highlight);
+    background-color: var(--button-bg);
     color: var(--text-primary);
     width: 65px;
     height: 65px;
@@ -291,16 +291,66 @@ p {
   }
 }
 
-#theme-toggle {
+.theme-btn {
+
   position: fixed;     
   top: 20px;      
-  right: 20px;         
-  z-index: 10000;       
-  background: var(--accent);
-  color: var(--text-primary);
-  border: solid 2px var(--text-primary);
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
+  right: 20px;    
+}
+
+.sound-btn {
+  position: fixed;
+  top: 90px;
+  right: 20px;
+}
+
+.switch-wrapper input[type="checkbox"] {
+   display: none;
+   visibility: hidden;
+}
+
+.switch-wrapper {
+   --size: 64px;
+}
+
+.switch-wrapper .block {
+   position: relative;
+   clear: both;
+   float: left;
+}
+
+.switch-wrapper label {
+   width: var(--size);
+   height: calc(var(--size) / 2);
+   box-sizing: border-box;
+   border: 3px solid;
+   float: left;
+   border-radius: 16px;
+   position: relative;
+   cursor: pointer;
+   transition: .3s ease;
+   color: black;
+}
+
+.switch-wrapper input[type=checkbox]:checked + label {
+   background: #474bff;
+}
+
+.switch-wrapper input[type=checkbox]:checked + label:before {
+   left: calc(var(--size) / 2);
+}
+
+.switch-wrapper label:before {
+   transition: .3s ease;
+   content: '';
+   width: calc((var(--size) / 2) - 10px);
+   height: calc((var(--size) / 2) - 10px);
+   position: absolute;
+   background: white;
+   left: 2px;
+   top: 2px;
+   box-sizing: border-box;
+   border: 3px solid;
+   color: black;
+   border-radius: 16px;
 }
