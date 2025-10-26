@@ -32,7 +32,7 @@ $stroke-width-big-bottom: 4px;
 $stroke-width-medium: 7px;
 
 :root {
-  --bg-color: #b16c4d;
+  --bg-color: #cfa07c;
   --ui-bg: #FBEACE;
   --secondary-ui-bg: #fef3e1;
   --card-bg: #fff6ea;
@@ -92,6 +92,7 @@ p {
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 999;
 
   width: 100%;
   height: 100%;
@@ -201,18 +202,22 @@ p {
 
     .modal-content {
       display: flex;
-      gap: 1rem;
-      padding: 30px;
-      margin: 13px;
+      gap: 2rem;
+      padding: 50px 30px;
+      margin: 0 5px 6px 25px;
       height: 500px;
       flex-wrap: wrap;
       overflow-y: auto;
       border-radius: 0 0 $border-radius $border-radius;
+      position: relative;//dont overlay on scrollbar
+      z-index: 9;//dont overlay on scrollbar
 
       .border-wrapper {
-        width: 48%;
-        height: fit-content;
+        width: 46%;
+        height: min-content;//that can fix bordersvg in firebox
+        background-color: var(--card-bg);
         border-radius: $border-radius-medium;
+        align-items: start;
 
         svg rect {
           stroke-width: $stroke-width-big-bottom;
@@ -221,8 +226,7 @@ p {
           ry: $border-radius-medium;
         }
 
-        .content-card {
-          background-color: var(--card-bg);
+        .content-card {      
           padding: 2rem 1.2rem;
           display: flex;
           flex-direction: column;
@@ -259,7 +263,7 @@ p {
             border-radius: 15px;
             color: var(--accent);
           }
-          
+
           .card-description {
             margin: 10px 0;
           }
@@ -272,4 +276,12 @@ p {
   }
 
 
+}
+
+
+
+/* Firefox */
+.modal-content {
+  scrollbar-width: thin;           
+  scrollbar-color: var(--accent) var(--card-bg); 
 }
