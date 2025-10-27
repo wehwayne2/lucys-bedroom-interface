@@ -36,7 +36,9 @@ if (isFirefox) {
       svg.appendChild(newRect);
     });
   }
-
+  
+    redrawRects();
+    
   window.addEventListener('DOMContentLoaded', redrawRects);
 
   let resizeTimeout;

@@ -650,3 +650,46 @@ input {
   position: absolute;
   top: 9px;
 }
+
+/* -----------------clock------------------------ */
+.clock {
+  position: fixed;
+  background-color: var(--card-bg);
+  width: 100px;
+  height: 100px;
+  top: 190px;
+  right: 20px;
+  border-radius: 50%;
+  border: solid $border var(--text-primary);
+   box-shadow: $box-shadow;
+}
+
+.clock::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  background-color: red;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  border-radius: 50%;
+  z-index: 99;
+}
+
+.hand{
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform-origin: bottom;
+  background-color: blue;
+  border-radius: 10px;
+  transform: translateX(-50%) rotate(0deg);
+}
+
+.hour {
+  width: 7px;
+  height: 70px;
+  background-color: green;
+  z-index: 9;
+}
