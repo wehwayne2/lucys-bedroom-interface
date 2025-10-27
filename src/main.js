@@ -38,8 +38,8 @@ if (isFirefox) {
   }
   
     redrawRects();
-    
-  window.addEventListener('DOMContentLoaded', redrawRects);
+
+ window.addEventListener('load', redrawRects);
 
   let resizeTimeout;
   window.addEventListener('resize', () => {
