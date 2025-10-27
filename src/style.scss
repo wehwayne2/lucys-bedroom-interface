@@ -497,6 +497,14 @@ p {
    border-radius: $border-radius;
     box-shadow: $box-shadow;
 
+    img {
+      position: absolute;
+      top: -21px;
+      left: -9px;
+      width:90px;
+      height: 90px;
+      opacity: 0.5;
+    }
   .menu-icon {
     position: relative;
 
