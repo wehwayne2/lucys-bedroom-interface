@@ -91,3 +91,40 @@ clock.addEventListener("mouseenter", () => {
 
 setInterval(updateClock, 1000);
 updateClock(); */
+
+    function updateClock() {
+      const clock = document.getElementById('clock');
+      const now = new Date();
+
+      let hours = now.getHours();
+      const minutes = now.getMinutes();
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+
+      // convert to 12-hour format
+      hours = hours % 12 || 12;
+
+      const timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')} ${ampm}`;
+      clock.textContent = timeString;
+    }
+
+    // update every second
+    setInterval(updateClock, 1000);
+    updateClock(); 
+
+    function getDayPeriod() {
+  const hour = new Date().getHours();
+
+  if (hour >= 5 && hour < 12) {
+    return 'morning';   // 5am–11:59am
+  } else if (hour >= 12 && hour < 17) {
+    return 'afternoon'; // 12pm–4:59pm
+  } else if (hour >= 17 && hour < 21) {
+    return 'evening';   // 5pm–8:59pm
+  } else {
+    return 'night';     // 9pm–4:59am
+  }
+}
+
+const period = getDayPeriod();
+
+document.getElementById('period-text').textContent = `Good ${period}`;
