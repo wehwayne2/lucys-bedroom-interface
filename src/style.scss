@@ -70,8 +70,26 @@ $box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 4px, rgba(0, 0, 0, 0.25) 0px 7px 13px -
 }
 
 body {
-  background-color: var(--bg-color);
+  
   overflow: hidden;
+background-color: black;
+  
+
+}
+
+body:before {
+      content: "";
+    position: fixed;       /* stays in place on scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+     background-image: url('/imageds.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+ /*  filter: blur(10px); */
 }
 
 h2 {
@@ -247,7 +265,7 @@ p {
         align-items: start;
 
         svg rect {
-          stroke-width: calc($stroke-width-big/2);
+          stroke-width: 4px;
           stroke: var(--text-primary);
           rx: $border-radius-medium;
           ry: $border-radius-medium;
@@ -651,25 +669,26 @@ input {
   top: 9px;
 }
 
-/* -----------------clock------------------------ */
-.clock {
+/* .clock {
   position: fixed;
-  background-color: var(--card-bg);
+
   width: 100px;
   height: 100px;
   top: 190px;
   right: 20px;
   border-radius: 50%;
-  border: solid $border var(--text-primary);
    box-shadow: $box-shadow;
+ background-color: rgba(255, 255, 255, 0.109);
+    backdrop-filter: blur(30px);  
+ 
 }
 
 .clock::after {
   content: "";
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   position: absolute;
-  background-color: red;
+  background-color: var(--accent);
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
@@ -677,19 +696,42 @@ input {
   z-index: 99;
 }
 
-.hand{
+.hand, .hands{
   position: absolute;
   bottom: 50%;
   left: 50%;
   transform-origin: bottom;
-  background-color: blue;
+
   border-radius: 10px;
   transform: translateX(-50%) rotate(0deg);
 }
 
 .hour {
   width: 7px;
-  height: 70px;
-  background-color: green;
+  height: 20px;
+  background-color: var(--card-bg);
   z-index: 9;
 }
+
+.minute {
+  width: 6px;
+  height: 30px;
+  background-color: var(--card-bg);
+  z-index: 8;
+}
+
+.second {
+  width: 5px;
+  height: 40px;
+  background-color: var(--card-bg);
+  z-index: 7;
+}
+
+
+@keyframes warp {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(720deg); }
+}
+.warp {
+  animation: warp 1s ease-in-out;
+} */
