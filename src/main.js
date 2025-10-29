@@ -191,4 +191,10 @@ if (closeBtn) {
 
 const period = getDayPeriod();
 
-document.getElementById('dialog-text').textContent = `Good ${period} !`;
+const dialogText = document.getElementById('dialog-text'); 
+dialogText.textContent = `Good ${period} !`;
+const dialog = document.getElementById('dialog');
+
+dialog.addEventListener('click', () => {
+  dialogText.textContent = "Welcome to my portfolio !";
+});

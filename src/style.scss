@@ -42,7 +42,7 @@ $box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 4px, rgba(0, 0, 0, 0.25) 0px 7px 13px -
   --secondary-accent: #E2D2C6;
   --button-bg: #e58881;
 
-  --text-primary: #714A4F;
+  --text-primary: #714B4F;
   --text-secondary: #714A4F;
 
   --border-color: #ffffff;
@@ -770,17 +770,29 @@ input {
     position: fixed;
     bottom: 20px;
     left: 20px;
+    cursor: pointer;
+    .lucy-icon{
+       position: absolute;
+  top: 0%;
+  left: 0%;
 
+  width: 120px;  
+  height: 120px;  
+  background: var(--button-bg);
+  border-radius: 50%; 
+  z-index: 1;  
+    } 
     img {
-      width: 100px;
-      height: 100px;
+      position: relative;
+      z-index: 99;
+      width: 120px;
+      height: 120px;
     }
   }
 
 .tooltip {
   font-family: 'Sweetie Bubble Gum', cursive;
-  color: var(--card-bg);
-  -webkit-text-stroke: 2px var(--text-primary);
+ color: var(--text-primary);
   width: fit-content;
   height: 10px;
   text-align: center;
