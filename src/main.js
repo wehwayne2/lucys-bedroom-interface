@@ -172,7 +172,7 @@ if (closeBtn) {
       clock.textContent = timeString;
     }
 
-    setInterval(updateClock, 60000);
+    setInterval(updateClock, 10000);
     updateClock(); 
 
     function getDayPeriod() {
