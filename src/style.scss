@@ -387,8 +387,8 @@ p {
   background-color: var(--button-bg);
   border: solid $border var(--text-primary);
   box-shadow:
-    rgba(0, 0, 0, 0.35) 0px 2px 4px, rgba(0, 0, 0, 0.25) 0px 7px 13px -3px,
-    inset 0 2px 4px rgba(0, 0, 0, 0.35);
+    rgba(0, 0, 0, 0.25) 0px 2px 4px, rgba(0, 0, 0, 0.15) 0px 7px 13px -3px,
+    inset 0 2px 4px rgba(0, 0, 0, 0.25);
   transition: .4s;
   border-radius: calc(var(--height-of-switch)/2);
 }
@@ -502,8 +502,8 @@ p {
   background-color: var(--button-bg);
   border: solid $border var(--text-primary);
   box-shadow:
-    rgba(0, 0, 0, 0.35) 0px 2px 4px, rgba(0, 0, 0, 0.25) 0px 7px 13px -3px,
-    inset 0 2px 4px rgba(0, 0, 0, 0.35);
+    rgba(0, 0, 0, 0.25) 0px 2px 4px, rgba(0, 0, 0, 0.15) 0px 7px 13px -3px,
+    inset 0 2px 4px rgba(0, 0, 0, 0.25);
   transition: .4s;
   border-radius: calc(var(--height-of-switch)/2);
 }
@@ -580,8 +580,8 @@ p {
 }
 
 .menu-icon-wrapper {
-  width: 65px;
-  height: 65px;
+  width: 75px;
+  height: 75px;
   position: fixed;
   top: 20px;
   left: 20px;
@@ -594,10 +594,10 @@ p {
 
   img {
     position: absolute;
-    top: -21px;
-    left: -9px;
-    width: 90px;
-    height: 90px;
+    top: -24px;
+    left: -11px;
+    width: 100px;
+    height: 100px;
     opacity: 0.5;
   }
 
@@ -608,8 +608,8 @@ p {
       width: 100%;
       position: absolute;
       top: 0px;
-      transform: translate(-1%, 20%);
-      gap: 2px;
+      transform: translate(0%, 15%);
+  /*     gap: 3px; */
       @include centered;
       flex-direction: column;
       z-index: 10;
@@ -620,7 +620,7 @@ p {
 
 .icon {
   border: solid 3px var(--text-primary);
-  width: 40px;
+  width: 50px;
   height: 10px;
 
   background-color: var(--card-bg);
@@ -637,30 +637,54 @@ input {
   display: none
 }
 
-#menu:checked~.all-line .div-1 {
-  animation: animate-line-1 .7s cubic-bezier(0.3, 1, 0.7, 1) forwards;
+#menu:checked ~ .all-line .div-1 {
+  animation: open-top 0.5s forwards;
 }
 
-#menu:checked~.all-line .div-3 {
-  animation: animate-line-2 .7s cubic-bezier(0.3, 1, 0.7, 1) forwards;
+#menu:checked ~ .all-line .div-3 {
+  animation: open-bottom 0.5s forwards;
 }
 
-#menu:checked~.all-line .div-2 {
-  scale: 0;
-  transition: all 0.5s;
+#menu1:checked ~ .all-line .div-1 {
+  animation: close-top 0.5s forwards;
 }
 
-#menu1:checked~.all-line .div-1 {
-  animation: animate-1-rev 0.7s ease-in-out
+#menu1:checked ~ .all-line .div-3 {
+  animation: close-bottom 0.5s forwards;
 }
 
-#menu1:checked~.all-line .div-3 {
-  animation: animate-2-rev 0.7s ease-in-out
+#menu:checked ~ .all-line .div-2 {
+  transform: scaleX(0);
+  transition: transform 0.5s;
 }
 
-#menu1:checked~.all-line .div-2 {
-  scale: 1;
-  transition: all 0.5s;
+#menu1:checked ~ .all-line .div-2 {
+  transform: scaleX(1);
+  transition: transform 0.5s;
+}
+
+@keyframes open-top {
+  0%   { transform: translateY(0) rotate(0deg); }
+  50%  { transform: translateY(10px) rotate(0deg); }
+  100% { transform: translateY(10px) rotate(45deg); }
+}
+
+@keyframes close-top {
+  0%   { transform: translateY(10px) rotate(45deg); }
+  50%  { transform: translateY(10px) rotate(0deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+@keyframes open-bottom {
+  0%   { transform: translateY(0) rotate(0deg); }
+  50%  { transform: translateY(-10px) rotate(0deg); }
+  100% { transform: translateY(-10px) rotate(-45deg); }
+}
+
+@keyframes close-bottom {
+  0%   { transform: translateY(-10px) rotate(-45deg); }
+  50%  { transform: translateY(-10px) rotate(0deg); }
+  100% { transform: translateY(0) rotate(0deg); }
 }
 
 #menu1:checked .label-1 {
@@ -669,62 +693,6 @@ input {
 
 #menu:checked~.label-2 {
   z-index: 12;
-}
-
-@keyframes animate-1-rev {
-  0% {
-    transform: translate3d(0, 18px, 0) rotate(45deg);
-  }
-
-  50% {
-    transform: translate3d(0, 18px, 0) rotate(0);
-  }
-
-  100% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
-  }
-}
-
-@keyframes animate-line-1 {
-  0% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
-  }
-
-  50% {
-    transform: translate3d(0, 18px, 0) rotate(0);
-  }
-
-  100% {
-    transform: translate3d(0, 18px, 0) rotate(45deg);
-  }
-}
-
-@keyframes animate-line-2 {
-  0% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
-  }
-
-  50% {
-    transform: translate3d(0, -18px, 0) rotate(0);
-  }
-
-  100% {
-    transform: translate3d(0, -18px, 0) rotate(-45deg);
-  }
-}
-
-@keyframes animate-2-rev {
-  0% {
-    transform: translate3d(0, -18px, 0) rotate(45deg);
-  }
-
-  50% {
-    transform: translate3d(0, -18px, 0) rotate(0);
-  }
-
-  100% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
-  }
 }
 
 .div-2-2 {
@@ -818,21 +786,41 @@ input {
 
 .widget {
   position: fixed;
-  left: 100px;
-  top: 20px;
+  left: 110px;
+  top: 23px;
   z-index: 999;
   display: flex;
   flex-direction: column;
   align-items: start;
   justify-content: center;
+  gap: 5px;
 
-  .clock {
+    .clock {
     font-family: 'Sweetie Bubble Gum', cursive;
     color: var(--card-bg);
     font-size: 1.7rem;
     -webkit-text-stroke: 2px var(--text-primary);
   }
 
+.location {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--card-bg);
+  padding: 2px 5px;
+  border-radius: $border-radius;
+  img {
+    width: 40px;
+    height: 35px;
+  }
+   .location-text {
+    font-family: 'Sweetie Bubble Gum', cursive;
+    color: var(--card-bg);
+    font-size: 1.7rem;
+    -webkit-text-stroke: 2px var(--text-primary);
+  }
+}
 
 }
 
