@@ -6,7 +6,15 @@ const root = document.documentElement;
 
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme) {
-  root.setAttribute('data-theme', savedTheme);
+  const period = getDayPeriod();
+
+  if (period === 'evening' || period === 'night') {
+    root.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', 'dark');
+  } else {
+    root.removeAttribute('data-theme');
+    localStorage.setItem('theme', 'light');
+  }
 }
 
 toggleButton.addEventListener('click', () => {
@@ -109,18 +117,6 @@ function showModal() {
       gsap.set(modal, { scale: 0.5, rotation: -5, opacity: 0 });
     }
   });
-
-  gsap.to(closeBtn, {
-    scale: 1,
-    rotation: 0,
-    opacity: 1,
-    duration: 0.6,
-    ease: "back.out(1.7)",
-    delay: 0.2,
-    onStart: () => {
-      gsap.set(closeBtn, { scale: 0, rotation: -90, opacity: 0 });
-    }
-  });
 }
 
 function hideModal() {
@@ -144,7 +140,7 @@ function hideModal() {
     ease: "back.in(1.5)",
     delay: 0.1,
     onComplete: () => {
-      modal.classList.add('hidden'); 
+      modal.classList.add('hidden');
       gsap.set(modal, { clearProps: "all" });
     }
   });
@@ -158,40 +154,40 @@ if (closeBtn) {
 
 
 
-    function updateClock() {
-      const clock = document.getElementById('clock');
-      const now = new Date();
+function updateClock() {
+  const clock = document.getElementById('clock');
+  const now = new Date();
 
-      let hours = now.getHours();
-      const minutes = now.getMinutes();
-      const ampm = hours >= 12 ? 'PM' : 'AM';
+  let hours = now.getHours();
+  const minutes = now.getMinutes();
+  const ampm = hours >= 12 ? 'PM' : 'AM';
 
-      hours = hours % 12 || 12;
+  hours = hours % 12 || 12;
 
-      const timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')} ${ampm}`;
-      clock.textContent = timeString;
-    }
+  const timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')} ${ampm}`;
+  clock.textContent = timeString;
+}
 
-    setInterval(updateClock, 10000);
-    updateClock(); 
+setInterval(updateClock, 1000);
+updateClock();
 
-    function getDayPeriod() {
+function getDayPeriod() {
   const hour = new Date().getHours();
 
   if (hour >= 5 && hour < 12) {
-    return 'morning';   // 5am–11:59am
+    return 'morning';   
   } else if (hour >= 12 && hour < 17) {
-    return 'afternoon'; // 12pm–4:59pm
+    return 'afternoon'; 
   } else if (hour >= 17 && hour < 21) {
-    return 'evening';   // 5pm–8:59pm
+    return 'evening';  
   } else {
-    return 'night';     // 9pm–4:59am
+    return 'night';    
   }
 }
 
 const period = getDayPeriod();
 
-const dialogText = document.getElementById('dialog-text'); 
+const dialogText = document.getElementById('dialog-text');
 dialogText.textContent = `Good ${period} !`;
 const dialog = document.getElementById('dialog');
 

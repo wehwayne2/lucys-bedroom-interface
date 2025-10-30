@@ -5,7 +5,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-/*   transition: background-color 0.3s ease,
+  /*   transition: background-color 0.3s ease,
     color 0.3s ease,
     border-color 0.3s ease; */
   -webkit-tap-highlight-color: transparent; //https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-tap-highlight-color
@@ -38,7 +38,7 @@ $box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 4px, rgba(0, 0, 0, 0.25) 0px 7px 13px -
   --bg-color: #daae8c;
   --ui-bg: #FBEACE;
   --secondary-ui-bg: #fef3e1;
-  --card-bg: #fff6ea;
+  --card-bg: #fff5ec;
 
   --accent: #FF7879;
   --secondary-accent: #E2D2C6;
@@ -47,7 +47,7 @@ $box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 4px, rgba(0, 0, 0, 0.25) 0px 7px 13px -
   --text-primary: #714B4F;
   --text-secondary: #714A4F;
 
-  --border-color: #ffffff;
+  --hover-highlight-color: #ffffff;
 
   --width-of-switch: 7rem;
   --height-of-switch: 60px;
@@ -68,7 +68,7 @@ $box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 4px, rgba(0, 0, 0, 0.25) 0px 7px 13px -
   --text-primary: #8cc3bb;
   --text-secondary: #ffffff;
 
-  --border-color: #afa827;
+  --hover-highlight-color: #bd5858;
 }
 
 body {
@@ -100,7 +100,7 @@ h2 {
   font-family: 'Sweetie Bubble Gum', cursive;
   font-size: 2.5rem;
   margin: 0;
-  color: var(--border-color);
+  color: var(--card-bg);
   text-transform: uppercase;
 }
 
@@ -176,6 +176,12 @@ p {
     border-radius: 50%;
     z-index: 1000; // stays above all content
     cursor: pointer;
+    transform: scale(1) rotate(0deg);
+    transition: transform 0.5s ease;
+
+    &:hover {
+      transform: scale(1.1) rotate(-5deg);
+    }
 
     img {
       position: absolute;
@@ -186,11 +192,31 @@ p {
       opacity: 0.5;
     }
 
-    svg {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+    .close-icon {
+      cursor: pointer;
+
+      .line {
+        fill: none;
+        stroke-linecap: round;
+        transition: stroke 0.3s ease;
+      }
+
+      .main {
+        stroke: var(--text-primary);
+        stroke-width: 8;
+      }
+
+      .overlay {
+        stroke: var(--card-bg);
+        stroke-width: 3;
+        transition: stroke 0.3s ease;
+      }
+
+      &:hover {
+        .overlay {
+          stroke: var(--hover-highlight-color);
+        }
+      }
     }
   }
 
@@ -223,7 +249,7 @@ p {
 
       svg rect {
         stroke-width: $stroke-width-medium;
-        stroke: var(--border-color);
+        stroke: var(--card-bg);
         rx: 8px;
         ry: 8px;
       }
@@ -248,7 +274,7 @@ p {
 
       //firebox
       scrollbar-width: thin;
-      scrollbar-color: var(--accent) var(--border-color);
+      scrollbar-color: var(--accent) var(--card-bg);
 
       &::-webkit-scrollbar {
         width: 8px;
@@ -257,7 +283,7 @@ p {
       &::-webkit-scrollbar-track {
         width: 2px;
         border-radius: 4px;
-        background-color: var(--border-color);
+        background-color: var(--card-bg);
       }
 
       &::-webkit-scrollbar-thumb {
@@ -381,6 +407,17 @@ p {
   background-color: var(--card-bg);
   transition: 0.4s;
   z-index: 99;
+  transition: width 0.3s ease,
+    height 0.3s ease,
+    left 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.switch-wrapper .slider:hover:before {
+  width: calc(var(--size-of-icon) + 1.1rem);
+  height: calc(var(--size-of-icon) + 1.1rem);
+  left: calc(var(--slider-offset) - 0.35rem);
+  background-color: var(--hover-highlight-color);
 }
 
 .switch-wrapper .slider:after {
@@ -403,6 +440,18 @@ p {
 
   background-color: var(--text-primary);
   z-index: 999;
+
+    transition: width 0.3s ease,
+    height 0.3s ease,
+    left 0.3s ease,
+
+}
+
+.switch-wrapper .slider:hover:after {
+  width: calc(var(--size-of-icon) + 0.3rem);
+  height: calc(var(--size-of-icon) + 0.3rem);
+  left: calc(var(--slider-offset) + 0.2rem);
+
 }
 
 .switch-wrapper input:checked+.slider:before {
@@ -473,7 +522,17 @@ p {
   background-color: var(--card-bg);
   transition: 0.4s;
   z-index: 99;
+    transition: width 0.3s ease,
+    height 0.3s ease,
+    left 0.3s ease,
+    background-color 0.3s ease;
+}
 
+.sound-switch-wrapper .sound-slider:hover:before {
+  width: calc(var(--size-of-icon) + 1.1rem);
+  height: calc(var(--size-of-icon) + 1.1rem);
+  left: calc(var(--slider-offset) - 0.4rem);
+  background-color: var(--hover-highlight-color);
 }
 
 .sound-switch-wrapper .sound-slider::after {
@@ -495,6 +554,16 @@ p {
 
   background-color: var(--text-primary);
   z-index: 999;
+      transition: width 0.3s ease,
+    height 0.3s ease,
+    left 0.3s ease,
+}
+
+.sound-switch-wrapper .sound-slider:hover:after {
+  width: calc(var(--size-of-icon) + 0.3rem);
+  height: calc(var(--size-of-icon) + 0.3rem);
+  left: calc(var(--slider-offset) + 0.3rem);
+
 }
 
 .sound-switch-wrapper input:checked+.sound-slider::before {
@@ -554,7 +623,7 @@ p {
   width: 40px;
   height: 10px;
 
-  background-color: var(--border-color);
+  background-color: var(--card-bg);
   border-radius: 6px;
   transition: background-color 0.2s ease-in-out;
 
@@ -767,36 +836,38 @@ input {
 
 }
 
-  .dialog {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    cursor: pointer;
-    .lucy-icon{
-       position: absolute;
-  top: 0%;
-  left: 0%;
+.dialog {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  cursor: pointer;
 
-  width: 120px;  
-  height: 120px;  
-  background: var(--button-bg);
-  border-radius: 50%; 
-  z-index: 1;  
-    } 
-    img {
-      position: relative;
-      z-index: 99;
-      width: 120px;
-      height: 120px;
-    }
+  .lucy-icon {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+
+    width: 120px;
+    height: 120px;
+    background: var(--button-bg);
+    border-radius: 50%;
+    z-index: 1;
   }
+
+  img {
+    position: relative;
+    z-index: 99;
+    width: 120px;
+    height: 120px;
+  }
+}
 
 .tooltip {
   font-family: 'Sweetie Bubble Gum', cursive;
- color: var(--text-primary);
+  color: var(--text-primary);
   width: fit-content;
   height: 10px;
   text-align: center;
