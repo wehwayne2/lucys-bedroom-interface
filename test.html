@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wave Sidebar Menu</title>
+
+<!-- Google Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<style>
+  @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+body {
+  padding:20px;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif; }
+
+.smartphone {
+  float: left;
+  margin-left: 200px;
+  display: inline-block;
+  background-color: white;
+  width: 320px;
+  height: 530px;
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+     -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
+  .smartphone .top {
+    float: left;
+    background-color: white;
+    width: 100%;
+    height: 50px;
+    -webkit-transition: all 0.50s;
+    -o-transition: all 0.50s;
+    -moz-transition: all 0.50s;
+    transition: all 0.50s; }
+    .smartphone .top .titlebar {
+      background: transparent;
+      display: inline-block; }
+      .smartphone .top .titlebar h3 {
+        padding: 13px 14px 14px;
+        margin: 0;
+        font-size: 15px; }
+    .smartphone .top .menuIcon {
+      margin-left: 7px;
+      outline: none;
+      border: none;
+      padding: 14px;
+      font-size: 20px;
+      float: left;
+      cursor: pointer;
+      background: transparent;
+      -webkit-transition: all 0.5s;
+      -o-transition: all 0.5s;
+      -moz-transition: all 0.5s;
+      transition: all 0.5s; }
+  .smartphone .content {
+    display: inline-block;
+    background-color: white;
+    width: 100%;
+    height: 91.2%; }
+
+.sectionPage {
+  position: relative;
+  float: left;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; }
+  .sectionPage ul {
+    list-style: none;
+    padding: 0 0 0 20px; }
+    .sectionPage ul li {
+      margin-bottom: 10px;
+      display: inline-block; }
+      .sectionPage ul li .about {
+        display: inline-block;
+        padding-left: 13px;
+        /*
+                float: right;
+                margin: 0;
+                padding: 0;
+                position: relative;
+                left: -123px;
+                background: transparent;*/ }
+        .sectionPage ul li .about .twitter {
+          display: block;
+          margin-top: 6px;
+          font-size: 14px; }
+        .sectionPage ul li .about .fullname {
+          font-weight: bold;
+          text-decoration: underline; }
+      .sectionPage ul li img {
+        float: left;
+        width: 55px;
+        -webkit-border-radius: 7%;
+           -moz-border-radius: 7%;
+                border-radius: 7%; }
+
+.wave {
+  background-image: url("https://res.cloudinary.com/dmtrk3yns/image/upload/v1485077855/wave_xop6al.svg");
+  background-repeat: repeat-x;
+  position: absolute;
+  top: -175px;
+  width: 4592px;
+  height: 180px;
+  -webkit-transition: all 1s linear;
+  -o-transition: all 1s linear;
+  -moz-transition: all 1s linear;
+  transition: all 1s linear; }
+
+.animate_wave {
+  -webkit-animation: wave 1s cubic-bezier(0.35, 0.45, 0.65, 0.25);
+     -moz-animation: wave 1s cubic-bezier(0.35, 0.45, 0.65, 0.25);
+       -o-animation: wave 1s cubic-bezier(0.35, 0.45, 0.65, 0.25);
+          animation: wave 1s cubic-bezier(0.35, 0.45, 0.65, 0.25);
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+       transform: translate3d(0, 0, 0);
+  -webkit-animation-fill-mode: forwards;
+     -moz-animation-fill-mode: forwards;
+       -o-animation-fill-mode: forwards;
+          animation-fill-mode: forwards; }
+
+.up {
+  -webkit-animation: up 2s;
+     -moz-animation: up 2s;
+       -o-animation: up 2s;
+          animation: up 2s;
+  -webkit-animation-fill-mode: forwards;
+     -moz-animation-fill-mode: forwards;
+       -o-animation-fill-mode: forwards;
+          animation-fill-mode: forwards; }
+
+.ocean {
+  background: #69f0ae;
+  display: inline-block;
+  height: 90px;
+  width: 100%;
+  position: absolute;
+  z-index: 0;
+  bottom: 0;
+  left: 0;
+  -webkit-transition: all 0.50s;
+  -o-transition: all 0.50s;
+  -moz-transition: all 0.50s;
+  transition: all 0.50s; }
+  .ocean .ocontent ul li {
+    background: #69f0ae;
+    display: block;
+    margin: 0;
+    font-size: 15px;
+    padding: 10px; }
+
+.hhr {
+  border: 1px solid #56e29d;
+  margin: 25px 0;
+  width: 245px; }
+
+.profile {
+  display: inline-block;
+  margin-left: 17px; }
+  .profile > * {
+    margin: 0; }
+
+.avatar {
+  display: inline-block !important; }
+
+@-webkit-keyframes wave {
+  0% {
+    margin-left: 0; }
+  100% {
+    margin-left: -2296px; } }
+
+@-moz-keyframes wave {
+  0% {
+    margin-left: 0; }
+  100% {
+    margin-left: -2296px; } }
+
+@-o-keyframes wave {
+  0% {
+    margin-left: 0; }
+  100% {
+    margin-left: -2296px; } }
+
+@keyframes wave {
+  0% {
+    margin-left: 0; }
+  100% {
+    margin-left: -2296px; } }
+
+@-webkit-keyframes up {
+  0% {
+    bottom: -120px; }
+  35% {
+    height: 40%;
+    bottom: -100px; }
+  100% {
+    bottom: 0;
+    height: 100%; } }
+
+@-moz-keyframes up {
+  0% {
+    bottom: -120px; }
+  35% {
+    height: 40%;
+    bottom: -100px; }
+  100% {
+    bottom: 0;
+    height: 100%; } }
+
+@-o-keyframes up {
+  0% {
+    bottom: -120px; }
+  35% {
+    height: 40%;
+    bottom: -100px; }
+  100% {
+    bottom: 0;
+    height: 100%; } }
+
+@keyframes up {
+  0% {
+    bottom: -120px; }
+  35% {
+    height: 40%;
+    bottom: -100px; }
+  100% {
+    bottom: 0;
+    height: 100%; } }
+
+.close {
+  -webkit-animation: down 2s;
+     -moz-animation: down 2s;
+       -o-animation: down 2s;
+          animation: down 2s;
+  -webkit-animation-fill-mode: forwards;
+     -moz-animation-fill-mode: forwards;
+       -o-animation-fill-mode: forwards;
+          animation-fill-mode: forwards; }
+
+@-webkit-keyframes down {
+  0% {
+    height: 100%;
+    bottom: 0; }
+  35% {
+    height: 90px; }
+  50% {
+    bottom: -55px; }
+  100% {
+    bottom: -160px;
+    height: 0; } }
+
+@-moz-keyframes down {
+  0% {
+    height: 100%;
+    bottom: 0; }
+  35% {
+    height: 90px; }
+  50% {
+    bottom: -55px; }
+  100% {
+    bottom: -160px;
+    height: 0; } }
+
+@-o-keyframes down {
+  0% {
+    height: 100%;
+    bottom: 0; }
+  35% {
+    height: 90px; }
+  50% {
+    bottom: -55px; }
+  100% {
+    bottom: -160px;
+    height: 0; } }
+
+@keyframes down {
+  0% {
+    height: 100%;
+    bottom: 0; }
+  35% {
+    height: 90px; }
+  50% {
+    bottom: -55px; }
+  100% {
+    bottom: -160px;
+    height: 0; } }
+
+.describe {
+  height: 100px;
+  background: transparent;
+  display: inline-block;
+  margin-left: 50px; }
+  .describe > h1 {
+    margin: 0 0 15px; }
+  .describe > a {
+    text-decoration: none; }
+
+</style>
+</head>
+<body>
+
+    <div class="smartphone">
+        <div class="top">
+            <button type="button" class="menuIcon">
+              <i class="material-icons">menu</i>
+            </button>
+            <div class="titlebar">
+                <h3>Welcome to your dashboard</h3>
+            </div>
+        </div>
+        <div class="content">
+            <section class="sectionPage">
+                <ul id="swipe">
+                    <li>
+                        <img src="https://s3.amazonaws.com/uifaces/faces/twitter/abinav_t/128.jpg" alt="">
+                        <div class="about">
+                            <span class="fullname">Abinav Thakuri</span>
+                            <span class="twitter">@abinav_t</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="https://s3.amazonaws.com/uifaces/faces/twitter/jina/128.jpg" alt="">
+                        <div class="about">
+                            <span class="fullname">Jad Limcaco</span>
+                            <span class="twitter">@jadlimcaco</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="https://s3.amazonaws.com/uifaces/faces/twitter/calebogden/128.jpg" alt="">
+                        <div class="about">
+                            <span class="fullname">Abinav Thakuri</span>
+                            <span class="twitter">@abinav_t</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="https://s3.amazonaws.com/uifaces/faces/twitter/mlane/128.jpg" alt="">
+                        <div class="about">
+                            <span class="fullname">Caleb Ogden</span>
+                            <span class="twitter">@calebogden</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="https://s3.amazonaws.com/uifaces/faces/twitter/_hartjeg/128.jpg" alt="">
+                        <div class="about">
+                            <span class="fullname">Mike Lane</span>
+                            <span class="twitter">@mlane</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="https://s3.amazonaws.com/uifaces/faces/twitter/mattsince87/128.jpg" alt="">
+                        <div class="about">
+                            <span class="fullname">Matt Litherland</span>
+                            <span class="twitter">@mattsince87</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg" alt="">
+                        <div class="about">
+                            <span class="fullname">Adham Dannaway</span>
+                            <span class="twitter">@AdhamDannaway</span>
+                        </div>
+                    </li>
+
+                </ul>
+
+                <div class="ocean" style="bottom:-90px;">
+                    <div class="ocontent">
+                        <ul>
+                            <li class="avatar">
+                                <img src="https://ui-avatars.com/api/?color=0000&name=VA" alt="">
+                                <div class="profile">
+                                    <h1>Vahe</h1>
+                                    <span>@vaheqelyan</span>
+                                </div>
+                            </li>
+                            <hr class="hhr" />
+                            <li>Profile</li>
+                            <li>Contact</li>
+                            <li>Settings</li>
+                            <li>Help</li>
+                            <li>Sign out</li>
+                        </ul>
+                    </div>
+                    <div class="wave" style="display:none;">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="describe">
+        <h1>Wave shape menu SVG</h1>
+        <a target="_blank" href="https://codepen.io/martinkenner/full/qRmVXd" >
+            <i class="material-icons">fullscreen</i> View full page
+        </a>
+    </div>
+
+    <script>
+      // i used settimeout instead of animationend event
+// Zepto
+
+TouchEmulator();
+
+const ocean = $(".ocean");
+const wave = $(".wave");
+
+$(".menuIcon").click(function() {
+    $(this).prop('disabled', true);
+    const c = $(this).find("i").text();
+    if (c === "menu") {
+        ocean.addClass("up");
+        $(".menuIcon").prop('disabled', true);
+        wave.css({
+            display: 'block'
+        }).addClass("animate_wave");
+
+        $(".menuIcon").find('i').text('close');
+        setTimeout(() => {
+            $(".menuIcon").prop('disabled', false);
+            $(".menuIcon").css({
+                color: "#fff"
+            });
+            $(".top").css({
+                background: "#69f0ae",
+                color: "#fff"
+            });
+            wave.removeClass('animate_wave');
+        }, 1300);
+    } else {
+        wave.addClass('animate_wave');
+        $(".menuIcon").prop('disabled', true);
+        ocean.removeClass('up').addClass('close');
+        $(".menuIcon").css({
+            color: "#000"
+        });
+        $(".top").css({
+            background: "#fff",
+            color: "#333"
+        });
+        setTimeout(() => {
+            ocean.removeClass('close');
+            wave.removeClass('animate_wave').css({
+                display: 'none'
+            });
+            $(".menuIcon").find('i').text('menu');
+            $(".menuIcon").prop('disabled', false);
+        }, 1300);
+    }
+});
+    </script>
+
+</body>
+</html>

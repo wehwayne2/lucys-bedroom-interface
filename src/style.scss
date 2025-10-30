@@ -32,6 +32,7 @@ $stroke-width-big: 8px;
 $stroke-width-big-bottom: 3.5px;
 $stroke-width-medium: 6px;
 $box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 4px, rgba(0, 0, 0, 0.25) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+$box-shadow-switch: rgba(0, 0, 0, 0.35) 0px 2px 4px, rgba(0, 0, 0, 0.25) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px 3px 0px inset;
 
 
 :root {
@@ -47,7 +48,7 @@ $box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 4px, rgba(0, 0, 0, 0.25) 0px 7px 13px -
   --text-primary: #714B4F;
   --text-secondary: #714A4F;
 
-  --hover-highlight-color: #ffffff;
+  --hover-highlight-color: #fffff8;
 
   --width-of-switch: 7rem;
   --height-of-switch: 60px;
@@ -386,9 +387,7 @@ p {
   bottom: 0;
   background-color: var(--button-bg);
   border: solid $border var(--text-primary);
-  box-shadow:
-    rgba(0, 0, 0, 0.25) 0px 2px 4px, rgba(0, 0, 0, 0.15) 0px 7px 13px -3px,
-    inset 0 2px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: $box-shadow-switch;
   transition: .4s;
   border-radius: calc(var(--height-of-switch)/2);
 }
@@ -501,9 +500,7 @@ p {
   bottom: 0;
   background-color: var(--button-bg);
   border: solid $border var(--text-primary);
-  box-shadow:
-    rgba(0, 0, 0, 0.25) 0px 2px 4px, rgba(0, 0, 0, 0.15) 0px 7px 13px -3px,
-    inset 0 2px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: $box-shadow-switch;
   transition: .4s;
   border-radius: calc(var(--height-of-switch)/2);
 }
@@ -609,10 +606,10 @@ p {
       position: absolute;
       top: 0px;
       transform: translate(0%, 15%);
-  /*     gap: 3px; */
       @include centered;
       flex-direction: column;
       z-index: 10;
+       gap: 3px;
     }
   }
 
@@ -622,7 +619,6 @@ p {
   border: solid 3px var(--text-primary);
   width: 50px;
   height: 10px;
-
   background-color: var(--card-bg);
   border-radius: 6px;
   transition: background-color 0.2s ease-in-out;
@@ -665,25 +661,25 @@ input {
 
 @keyframes open-top {
   0%   { transform: translateY(0) rotate(0deg); }
-  50%  { transform: translateY(10px) rotate(0deg); }
-  100% { transform: translateY(10px) rotate(45deg); }
+  50%  { transform: translateY(13px) rotate(0deg); }
+  100% { transform: translateY(13px) rotate(45deg); }
 }
 
 @keyframes close-top {
-  0%   { transform: translateY(10px) rotate(45deg); }
-  50%  { transform: translateY(10px) rotate(0deg); }
+  0%   { transform: translateY(13px) rotate(45deg); }
+  50%  { transform: translateY(13px) rotate(0deg); }
   100% { transform: translateY(0) rotate(0deg); }
 }
 
 @keyframes open-bottom {
   0%   { transform: translateY(0) rotate(0deg); }
-  50%  { transform: translateY(-10px) rotate(0deg); }
-  100% { transform: translateY(-10px) rotate(-45deg); }
+  50%  { transform: translateY(-13px) rotate(0deg); }
+  100% { transform: translateY(-13px) rotate(-45deg); }
 }
 
 @keyframes close-bottom {
-  0%   { transform: translateY(-10px) rotate(-45deg); }
-  50%  { transform: translateY(-10px) rotate(0deg); }
+  0%   { transform: translateY(-13px) rotate(-45deg); }
+  50%  { transform: translateY(-13px) rotate(0deg); }
   100% { transform: translateY(0) rotate(0deg); }
 }
 
