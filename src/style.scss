@@ -1,13 +1,14 @@
 @use "./styles/reset.scss";
 @use "./styles/fonts.scss";
+@use "./styles/variables.scss" as *;
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /*   transition: background-color 0.3s ease,
+  transition: background-color 0.3s ease,
     color 0.3s ease,
-    border-color 0.3s ease; */
+    border-color 0.3s ease;
   -webkit-tap-highlight-color: transparent; //https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-tap-highlight-color
 }
 
@@ -19,71 +20,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-@mixin centered {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-$border: 3px; //almost storke-width-big divide 2
-$border-radius: 25px;
-$border-radius-medium: 12.5px;
-$stroke-width-big: 8px;
-$stroke-width-big-bottom: 3.5px;
-$stroke-width-medium: 6px;
-$box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 4px, rgba(0, 0, 0, 0.25) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-$box-shadow-switch: rgba(0, 0, 0, 0.35) 0px 2px 4px, rgba(0, 0, 0, 0.25) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px 3px 0px inset;
-
-
-:root {
-  --bg-color: #daae8c;
-  --ui-bg: #FBEACE;
-  --secondary-ui-bg: #fef3e1;
-  --card-bg: #fff5ec;
-
-  --accent: #FF7879;
-  --secondary-accent: #E2D2C6;
-  --button-bg: #e58881;
-
-  --text-primary: #714B4F;
-  --text-secondary: #714A4F;
-
-  --hover-highlight-color: #fffff8;
-
-  --width-of-switch: 7rem;
-  --height-of-switch: 60px;
-  --size-of-icon: 2.2rem;
-  --slider-offset: 0.5rem;
-}
-
-[data-theme="dark"] {
-  --bg-color: #2f3058;
-  --ui-bg: #dd8c24;
-  --secondary-ui-bg: #0909c8;
-  --card-bg: #1d2c2e;
-
-  --accent: #b3ff00;
-  --secondary-accent: #09d3ee;
-  --button-bg: #c30d56;
-
-  --text-primary: #8cc3bb;
-  --text-secondary: #ffffff;
-
-  --hover-highlight-color: #bd5858;
-}
-
 body {
-
   overflow: hidden;
   background-color: black;
-
-
 }
 
 body:before {
   content: "";
   position: fixed;
-  /* stays in place on scroll */
+  /* stays in place on scroll makeup bg */
   top: 0;
   left: 0;
   width: 100%;
@@ -154,7 +99,7 @@ p {
   @include centered;
   top: 50%;
   left: 50%;
-  position: absolute;
+    position: fixed; 
   transform: translate(-50%, -50%);
   max-width: 1200px;
   z-index: 999;
@@ -182,6 +127,10 @@ p {
 
     &:hover {
       transform: scale(1.1) rotate(-5deg);
+    }
+
+    @include mobile {
+      display: none;
     }
 
     img {
@@ -317,6 +266,7 @@ p {
             display: flex;
             flex-direction: column;
             align-items: start;
+            width: 100%;
 
             .card-date {
               background-color: var(--text-primary);
@@ -330,6 +280,7 @@ p {
 
             img {
               width: 100%;
+              height: fit-content;
               object-fit: cover;
               border-radius: 0 7px 7px 7px;
               border: solid 2px var(--text-primary)
@@ -358,6 +309,10 @@ p {
   top: 20px;
   right: 20px;
   z-index: 9999;
+
+  @include mobile {
+    display: none;
+  }
 }
 
 .switch-wrapper input[type="checkbox"] {
@@ -440,7 +395,7 @@ p {
   background-color: var(--text-primary);
   z-index: 999;
 
-    transition: width 0.3s ease,
+  transition: width 0.3s ease,
     height 0.3s ease,
     left 0.3s ease,
 
@@ -471,6 +426,10 @@ p {
   top: 92px;
   right: 20px;
   z-index: 9999;
+
+  @include mobile {
+    display: none;
+  }
 }
 
 .sound-switch-wrapper input[type="checkbox"] {
@@ -500,7 +459,7 @@ p {
   bottom: 0;
   background-color: var(--button-bg);
   border: solid $border var(--text-primary);
-    box-shadow: $box-shadow-switch;
+  box-shadow: $box-shadow-switch;
   transition: .4s;
   border-radius: calc(var(--height-of-switch)/2);
 }
@@ -519,7 +478,7 @@ p {
   background-color: var(--card-bg);
   transition: 0.4s;
   z-index: 99;
-    transition: width 0.3s ease,
+  transition: width 0.3s ease,
     height 0.3s ease,
     left 0.3s ease,
     background-color 0.3s ease;
@@ -551,7 +510,7 @@ p {
 
   background-color: var(--text-primary);
   z-index: 999;
-      transition: width 0.3s ease,
+  transition: width 0.3s ease,
     height 0.3s ease,
     left 0.3s ease,
 }
@@ -609,7 +568,7 @@ p {
       @include centered;
       flex-direction: column;
       z-index: 10;
-       gap: 3px;
+      gap: 3px;
     }
   }
 
@@ -633,54 +592,86 @@ input {
   display: none
 }
 
-#menu:checked ~ .all-line .div-1 {
+#menu:checked~.all-line .div-1 {
   animation: open-top 0.5s forwards;
 }
 
-#menu:checked ~ .all-line .div-3 {
+#menu:checked~.all-line .div-3 {
   animation: open-bottom 0.5s forwards;
 }
 
-#menu1:checked ~ .all-line .div-1 {
+#menu1:checked~.all-line .div-1 {
   animation: close-top 0.5s forwards;
 }
 
-#menu1:checked ~ .all-line .div-3 {
+#menu1:checked~.all-line .div-3 {
   animation: close-bottom 0.5s forwards;
 }
 
-#menu:checked ~ .all-line .div-2 {
+#menu:checked~.all-line .div-2 {
   transform: scaleX(0);
   transition: transform 0.5s;
 }
 
-#menu1:checked ~ .all-line .div-2 {
+#menu1:checked~.all-line .div-2 {
   transform: scaleX(1);
   transition: transform 0.5s;
 }
 
 @keyframes open-top {
-  0%   { transform: translateY(0) rotate(0deg); }
-  50%  { transform: translateY(13px) rotate(0deg); }
-  100% { transform: translateY(13px) rotate(45deg); }
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(13px) rotate(0deg);
+  }
+
+  100% {
+    transform: translateY(13px) rotate(45deg);
+  }
 }
 
 @keyframes close-top {
-  0%   { transform: translateY(13px) rotate(45deg); }
-  50%  { transform: translateY(13px) rotate(0deg); }
-  100% { transform: translateY(0) rotate(0deg); }
+  0% {
+    transform: translateY(13px) rotate(45deg);
+  }
+
+  50% {
+    transform: translateY(13px) rotate(0deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
 }
 
 @keyframes open-bottom {
-  0%   { transform: translateY(0) rotate(0deg); }
-  50%  { transform: translateY(-13px) rotate(0deg); }
-  100% { transform: translateY(-13px) rotate(-45deg); }
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-13px) rotate(0deg);
+  }
+
+  100% {
+    transform: translateY(-13px) rotate(-45deg);
+  }
 }
 
 @keyframes close-bottom {
-  0%   { transform: translateY(-13px) rotate(-45deg); }
-  50%  { transform: translateY(-13px) rotate(0deg); }
-  100% { transform: translateY(0) rotate(0deg); }
+  0% {
+    transform: translateY(-13px) rotate(-45deg);
+  }
+
+  50% {
+    transform: translateY(-13px) rotate(0deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
 }
 
 #menu1:checked .label-1 {
@@ -711,75 +702,6 @@ input {
   top: 9px;
 }
 
-
-
-/* .clock {
-  position: fixed;
-
-  width: 100px;
-  height: 100px;
-  top: 190px;
-  right: 20px;
-  border-radius: 50%;
-   box-shadow: $box-shadow;
- background-color: rgba(255, 255, 255, 0.109);
-    backdrop-filter: blur(30px);  
- 
-}
-
-.clock::after {
-  content: "";
-  width: 10px;
-  height: 10px;
-  position: absolute;
-  background-color: var(--accent);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  border-radius: 50%;
-  z-index: 99;
-}
-
-.hand, .hands{
-  position: absolute;
-  bottom: 50%;
-  left: 50%;
-  transform-origin: bottom;
-
-  border-radius: 10px;
-  transform: translateX(-50%) rotate(0deg);
-}
-
-.hour {
-  width: 7px;
-  height: 20px;
-  background-color: var(--card-bg);
-  z-index: 9;
-}
-
-.minute {
-  width: 6px;
-  height: 30px;
-  background-color: var(--card-bg);
-  z-index: 8;
-}
-
-.second {
-  width: 5px;
-  height: 40px;
-  background-color: var(--card-bg);
-  z-index: 7;
-}
-
-
-@keyframes warp {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(720deg); }
-}
-.warp {
-  animation: warp 1s ease-in-out;
-} */
-
 .widget {
   position: fixed;
   left: 110px;
@@ -791,32 +713,38 @@ input {
   justify-content: center;
   gap: 5px;
 
-    .clock {
+  @include mobile {
+    display: none;
+  }
+
+  .clock {
     font-family: 'Sweetie Bubble Gum', cursive;
     color: var(--card-bg);
     font-size: 1.7rem;
     -webkit-text-stroke: 2px var(--text-primary);
   }
 
-.location {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--card-bg);
-  padding: 2px 5px;
-  border-radius: $border-radius;
-  img {
-    width: 40px;
-    height: 35px;
+  .location {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--card-bg);
+    padding: 2px 5px;
+    border-radius: $border-radius;
+
+    img {
+      width: 40px;
+      height: 35px;
+    }
+
+    .location-text {
+      font-family: 'Sweetie Bubble Gum', cursive;
+      color: var(--card-bg);
+      font-size: 1.7rem;
+      -webkit-text-stroke: 2px var(--text-primary);
+    }
   }
-   .location-text {
-    font-family: 'Sweetie Bubble Gum', cursive;
-    color: var(--card-bg);
-    font-size: 1.7rem;
-    -webkit-text-stroke: 2px var(--text-primary);
-  }
-}
 
 }
 

@@ -1,0 +1,59 @@
+$mobile: 768px;
+
+@mixin mobile {
+  @media (max-width: $mobile) {
+    @content;
+  }
+}
+
+@mixin centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+$border: 3px; //almost storke-width-big divide 2
+$border-radius: 25px;
+$border-radius-medium: 12.5px;
+$stroke-width-big: 8px;
+$stroke-width-big-bottom: 3.5px;
+$stroke-width-medium: 6px;
+$box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 4px, rgba(0, 0, 0, 0.25) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+$box-shadow-switch: rgba(0, 0, 0, 0.35) 0px 2px 4px, rgba(0, 0, 0, 0.25) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px 3px 0px inset;
+
+:root {
+  --bg-color: #daae8c;
+  --ui-bg: #FBEACE;
+  --secondary-ui-bg: #fef3e1;
+  --card-bg: #fff5ec;
+
+  --accent: #FF7879;
+  --secondary-accent: #E2D2C6;
+  --button-bg: #e58881;
+
+  --text-primary: #714B4F;
+  --text-secondary: #714A4F;
+
+  --hover-highlight-color: #fffff8;
+
+  --width-of-switch: 7rem;
+  --height-of-switch: 60px;
+  --size-of-icon: 2.2rem;
+  --slider-offset: 0.5rem;
+}
+
+[data-theme="dark"] {
+  --bg-color: #2f3058;
+  --ui-bg: #dd8c24;
+  --secondary-ui-bg: #0909c8;
+  --card-bg: #1d2c2e;
+
+  --accent: #b3ff00;
+  --secondary-accent: #09d3ee;
+  --button-bg: #c30d56;
+
+  --text-primary: #8cc3bb;
+  --text-secondary: #ffffff;
+
+  --hover-highlight-color: #bd5858;
+}

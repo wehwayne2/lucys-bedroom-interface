@@ -1,6 +1,7 @@
 import './style.scss'
 import gsap from "gsap";
 
+/*----------------------- theme based on dayperiod & theme toggle-----------------------*/
 const toggleButton = document.getElementById('theme-toggle');
 const root = document.documentElement;
 
@@ -28,8 +29,7 @@ toggleButton.addEventListener('click', () => {
   }
 });
 
-
-// fix svg redraw issue on firefox
+/*----------------------- fix redraw issue for firebox -----------------------*/
 const isFirefox = typeof InstallTrigger !== 'undefined';
 
 if (isFirefox) {
@@ -59,48 +59,7 @@ if (isFirefox) {
   });
 }
 
-/* const clock = document.getElementById("clock");
-const hands = document.getElementById("hands");
-function updateClock() {
-
-  const hourHand = document.getElementById("hour");
-  const minuteHand = document.getElementById("minute");
-  const secondHand = document.getElementById("second");
-
-  const now = new Date()
-  const hours = now.getHours()
-  const minutes = now.getMinutes()
-  const seconds = now.getSeconds()
-
-  const hourRotation = (hours % 12) * 30 + (minutes / 60) * 30;
-  const minuteRotation = minutes * 6 + (seconds / 60) * 6;
-  const secondRotation = seconds * 6;
-
-  hourHand.style.transform = `translateX(-50%) rotate(${hourRotation}deg)`;
-  minuteHand.style.transform = `translateX(-50%) rotate(${minuteRotation}deg)`;
-  secondHand.style.transform = `translateX(-50%) rotate(${secondRotation}deg)`;
-}
-
-let isWarping = false;
-
-clock.addEventListener("mouseenter", () => {
-  if (isWarping) return;
-  isWarping = true;
-  hands.classList.add("warp");
-
-  clock.addEventListener(
-    "animationend",
-    () => {
-      hands.classList.remove("warp");
-      isWarping = false;
-    },
-    { once: true }
-  );
-});
-
-setInterval(updateClock, 1000);
-updateClock(); */
-
+/*----------------------- modal close open -----------------------*/
 const closeBtn = document.getElementById('close-btn');
 const modal = document.getElementsByClassName('modal');
 
@@ -150,10 +109,7 @@ if (closeBtn) {
   closeBtn.addEventListener('click', hideModal);
 }
 
-
-
-
-
+/*----------------------- digital clock -----------------------*/
 function updateClock() {
   const clock = document.getElementById('clock');
   const now = new Date();
@@ -171,17 +127,18 @@ function updateClock() {
 setInterval(updateClock, 1000);
 updateClock();
 
+/*----------------------- modal close open -----------------------*/
 function getDayPeriod() {
   const hour = new Date().getHours();
 
   if (hour >= 5 && hour < 12) {
-    return 'morning';   
+    return 'morning';
   } else if (hour >= 12 && hour < 17) {
-    return 'afternoon'; 
+    return 'afternoon';
   } else if (hour >= 17 && hour < 21) {
-    return 'evening';  
+    return 'evening';
   } else {
-    return 'night';    
+    return 'night';
   }
 }
 
