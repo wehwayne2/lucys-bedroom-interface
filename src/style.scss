@@ -99,7 +99,7 @@ p {
   @include centered;
   top: 50%;
   left: 50%;
-    position: fixed; 
+  position: fixed;
   transform: translate(-50%, -50%);
   max-width: 1200px;
   z-index: 999;
@@ -109,7 +109,6 @@ p {
   }
 
   .close-btn {
-
     position: absolute;
     top: -12px;
     left: -70px;
@@ -547,6 +546,7 @@ p {
   border: solid $border var(--text-primary);
   border-radius: $border-radius;
   box-shadow: $box-shadow;
+  z-index: 999;
 
   img {
     position: absolute;
@@ -702,11 +702,49 @@ input {
   top: 9px;
 }
 
+
+.sidebar {
+  height: 100%;
+  width: 400px;
+  position: fixed;
+  top: 0;
+  z-index: 998;
+  left: -250px;
+  background: var(--button-bg);
+display: block;
+
+
+
+
+}
+
+  .sidebar-list {
+
+
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  uL li a {
+    font-family: 'Sweetie Bubble Gum', cursive;
+    font-size: 2.5rem;
+    color: var(--card-bg);
+    text-decoration: none;
+  }
+ 
+
+
+ .mobile-menu{
+  display: none;
+ }
+
+
+  
 .widget {
   position: fixed;
   left: 110px;
   top: 23px;
-  z-index: 999;
+  z-index: 997;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -827,4 +865,8 @@ input {
       var(--b) max(var(--b), var(--p) - var(--h)*tan(var(--a)/2) + var(--b)*tan(45deg - var(--a)/4)));
   background: var(--c2) content-box;
   border-image: conic-gradient(var(--c2) 0 0) fill 0/ max(var(--b), var(--p) - var(--h)*tan(var(--a)/2)) var(--r) max(var(--b), 100% - var(--p) - var(--h)*tan(var(--a)/2)) 0/0 0 0 var(--h);
+}
+
+.mobile-menu {
+  left: 0;
 }
