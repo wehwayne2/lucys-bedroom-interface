@@ -152,15 +152,10 @@ dialog.addEventListener('click', () => {
   dialogText.textContent = "Welcome to my portfolio !";
 });
 
-        const menuHamburger = document.getElementById("menu-icon")
-        const navLinks = document.getElementById("sidebar")
- 
-         console.log('menuHamburger:', menuHamburger)
-   console.log('navLinks:', navLinks)
-   
+const menuHamburger = document.getElementById("menu-icon");
+const navLinks = document.getElementById("sidebar");
 
-menuHamburger.addEventListener('click', (e) => {
-    e.preventDefault()  // Add this line!
-    navLinks.classList.toggle('mobile-menu')
-    console.log('Classes after toggle:', navLinks.classList)
-})
+menuHamburger.addEventListener('click', () => {
+  menuHamburger.classList.toggle('open');
+  navLinks.classList.toggle('sidebar-pop-out');
+});
