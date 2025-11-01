@@ -76,7 +76,7 @@ p {
     width: 100%;
     height: 100%;
     fill: none;
-    stroke-dasharray: 150, 3, 420, 1, 100, 5;
+    stroke-dasharray: 150, 3, 420, 10, 100, 5;
     /*  needchange */
     rx: $border-radius;
     ry: $border-radius;
@@ -606,8 +606,8 @@ p {
      svg rect {
           stroke-width: $stroke-width-big;
           stroke: var(--text-primary);
-          rx: 100px;
-          ry: 100px;
+          rx: $sidebar-border-radius;
+          ry: $sidebar-border-radius;
         }
   overflow: hidden;
   position: fixed;
@@ -640,24 +640,24 @@ p {
   list-style: none;
   padding: 0;
   margin: 0;
-}
 
-.sidebar-list li a {
-  font-family: 'Sweetie Bubble Gum', cursive;
-  font-size: 2.5rem;
-  color: var(--card-bg);
-  text-decoration: none;
-  transition: transform 0.2s ease, color 0.2s ease;
+  li a {
+    font-family: 'Sweetie Bubble Gum', cursive;
+    font-size: 2.5rem;
+    color: var(--card-bg);
+    text-decoration: none;
+    transition: transform 0.3s ease, color 0.3s ease;
 
-  &:hover {
-    transform: scale(1.1);
-    color: var(--text-primary);
+    &:hover {
+      transform: scale(1.1);
+      color: var(--text-primary);
+    }
   }
 }
 
 .sidebar-pop-out {
   left: -100px;
-border-radius: 100px;
+border-radius: $sidebar-border-radius;
   transform: scale(1);
   opacity: 1;
   transition:
