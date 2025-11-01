@@ -105,9 +105,11 @@ function hideModal() {
   });
 }
 
-if (closeBtn) {
-  closeBtn.addEventListener('click', hideModal);
-}
+
+  closeBtn.addEventListener('click', (event) => {
+    event.stopPropagation(); //important
+    hideModal();
+  });
 
 /*----------------------- digital clock -----------------------*/
 function updateClock() {
@@ -127,7 +129,7 @@ function updateClock() {
 setInterval(updateClock, 1000);
 updateClock();
 
-/*----------------------- modal close open -----------------------*/
+/*----------------------- dialog -----------------------*/
 function getDayPeriod() {
   const hour = new Date().getHours();
 
@@ -152,6 +154,7 @@ dialog.addEventListener('click', () => {
   dialogText.textContent = "Welcome to my portfolio !";
 });
 
+/*----------------------- menu icon and sidebar -----------------------*/
 const menuHamburger = document.getElementById("menu-icon");
 const navLinks = document.getElementById("sidebar");
 

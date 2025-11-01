@@ -2,6 +2,9 @@
 @use "./styles/fonts.scss";
 @use "./styles/variables.scss" as *;
 
+/*========================================
+                 global                      
+========================================*/
 * {
   margin: 0;
   padding: 0;
@@ -14,15 +17,11 @@
 
 html,
 body {
+  overflow: hidden;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  overflow: hidden;
-  background-color: black;
 }
 
 body:before {
@@ -95,6 +94,9 @@ p {
   border-radius: $border-radius;
 }
 
+/*========================================
+                 modal                      
+========================================*/
 .modal {
   @include centered;
   top: 50%;
@@ -303,6 +305,9 @@ p {
   }
 }
 
+/*========================================
+            theme-switcher                      
+========================================*/
 .switch-wrapper {
   position: fixed;
   top: 20px;
@@ -420,6 +425,9 @@ p {
   background-color: var(--text-primary);
 }
 
+/*========================================
+            sound-switcher                      
+========================================*/
 .sound-switch-wrapper {
   position: fixed;
   top: 92px;
@@ -534,6 +542,9 @@ p {
   background-color: var(--text-primary);
 }
 
+/*========================================
+            menu-icon                    
+========================================*/
 .menu-icon-wrapper {
   width: 75px;
   height: 75px;
@@ -555,75 +566,110 @@ p {
     width: 100px;
     height: 100px;
     opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.menu-icon {
+  width: 50px;
+  height: 40px;
+  cursor: pointer;
+  position: relative;
+
+  .icon {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: var(--card-bg);
+    border: 3px solid var(--text-secondary);
+    border-radius: 5px;
+    transition: top 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+
+    &.div-1 { top: 0px; }
+    &.div-2 { top: 15px; }
+    &.div-3 { top: 30px; }
   }
 
-}
-.menu-icon {
-  width: 30px;
-  height: 25px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  &.open {
+    .div-1 { top: 15px; transform: rotate(45deg); }
+    .div-2 { opacity: 0; }
+    .div-3 { top: 15px; transform: rotate(-45deg); }
+  }
 }
 
-.menu-icon .icon {
-  background: #000;
-  height: 3px;
-  width: 100%;
-  border-radius: 5px;
-  transition: all 0.3s ease;
-}
-
-/* Animation for the X */
-.menu-icon.open .div-1 {
-  transform: rotate(45deg) translateY(8px);
-}
-.menu-icon.open .div-2 {
-  opacity: 0;
-}
-.menu-icon.open .div-3 {
-  transform: rotate(-45deg) translateY(-8px);
-}
-
-
-
+/*========================================
+                sidebar                      
+========================================*/
 .sidebar {
-  height: 100%;
-  width: 400px;
+
+     svg rect {
+          stroke-width: $stroke-width-big;
+          stroke: var(--text-primary);
+          rx: 100px;
+          ry: 100px;
+        }
+  overflow: hidden;
   position: fixed;
   top: 0;
+  left: -500px;
+  width: 500px;
+  height: 100%;
   z-index: 998;
-  left: -400px;
   background: var(--button-bg);
-display: block;
- transition: left 0.3s ease; 
-
-
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  transform: scale(0.8);
+  opacity: 0;
+  transition:
+    left 0.4s ease-in-out,
+    transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+    border-radius 0.4s ease-in-out,
+    opacity 0.4s ease-in-out;
 }
 
-  .sidebar-list {
+.sidebar-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
+.sidebar-list li a {
+  font-family: 'Sweetie Bubble Gum', cursive;
+  font-size: 2.5rem;
+  color: var(--card-bg);
+  text-decoration: none;
+  transition: transform 0.2s ease, color 0.2s ease;
 
-    flex-direction: column;
-    gap: 1.5rem;
+  &:hover {
+    transform: scale(1.1);
+    color: var(--text-primary);
   }
-
-  uL li a {
-    font-family: 'Sweetie Bubble Gum', cursive;
-    font-size: 2.5rem;
-    color: var(--card-bg);
-    text-decoration: none;
-  }
- 
+}
 
 .sidebar-pop-out {
-  left: 0;
+  left: -100px;
+border-radius: 100px;
+  transform: scale(1);
+  opacity: 1;
+  transition:
+    left 0.3s ease-in-out,
+    transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-radius 0.5s ease-in-out,
+    opacity 0.3s ease-in-out;
 }
 
-
-  
+ /*========================================
+                  widget                      
+========================================*/ 
 .widget {
   position: fixed;
   left: 110px;
@@ -667,9 +713,11 @@ display: block;
       -webkit-text-stroke: 2px var(--text-primary);
     }
   }
-
 }
 
+/*========================================
+               dialog                      
+========================================*/
 .dialog {
   display: flex;
   align-items: center;
