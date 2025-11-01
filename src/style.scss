@@ -27,7 +27,7 @@ body {
 body:before {
   content: "";
   position: fixed;
-  /* stays in place on scroll makeup bg */
+  
   top: 0;
   left: 0;
   width: 100%;
@@ -172,12 +172,12 @@ p {
   }
 
   .content-wrapper {
+    cursor: auto;
     flex-direction: column;
     background: repeating-conic-gradient(from 45deg, var(--ui-bg) 0% 25%, var(--secondary-ui-bg) 0% 50%);
     background-size: 35px 35px;
     background-color: var(--secondary-ui-bg);
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-
     svg rect {
       stroke-width: $stroke-width-big;
       stroke: var(--text-primary);
@@ -568,47 +568,72 @@ p {
     opacity: 0.5;
     pointer-events: none;
   }
+
+  .menu-icon {
+    width: 50px;
+    height: 40px;
+    cursor: pointer;
+    position: relative;
+
+    .icon {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      background-color: var(--card-bg);
+      border: 3px solid var(--text-primary);
+      border-radius: 5px;
+      transition: top 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+
+      &.div-1 {
+        top: 0px;
+      }
+
+      &.div-2 {
+        top: 15px;
+      }
+
+      &.div-3 {
+        top: 30px;
+      }
+    }
+
+    &.open {
+      .div-1 {
+        top: 15px;
+        transform: rotate(45deg);
+      }
+
+      .div-2 {
+        opacity: 0;
+      }
+
+      .div-3 {
+        top: 15px;
+        transform: rotate(-45deg);
+      }
+
+      .div-1 {
+        background-color: blue;
+      }
+    }
+  }
 }
 
-.menu-icon {
-  width: 50px;
-  height: 40px;
-  cursor: pointer;
-  position: relative;
 
-  .icon {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 10px;
-    background: var(--card-bg);
-    border: 3px solid var(--text-secondary);
-    border-radius: 5px;
-    transition: top 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
-
-    &.div-1 { top: 0px; }
-    &.div-2 { top: 15px; }
-    &.div-3 { top: 30px; }
-  }
-
-  &.open {
-    .div-1 { top: 15px; transform: rotate(45deg); }
-    .div-2 { opacity: 0; }
-    .div-3 { top: 15px; transform: rotate(-45deg); }
-  }
-}
 
 /*========================================
                 sidebar                      
 ========================================*/
 .sidebar {
 
-     svg rect {
-          stroke-width: $stroke-width-big;
-          stroke: var(--text-primary);
-          rx: $sidebar-border-radius;
-          ry: $sidebar-border-radius;
-        }
+  svg rect {
+    stroke-width: $stroke-width-big;
+    stroke: var(--text-primary);
+    rx: $sidebar-border-radius;
+    ry: $sidebar-border-radius;
+  }
+
   overflow: hidden;
   position: fixed;
   top: 0;
@@ -625,11 +650,10 @@ p {
   border-bottom-right-radius: 10px;
   transform: scale(0.8);
   opacity: 0;
-  transition:
-    left 0.4s ease-in-out,
-    transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55),
-    border-radius 0.4s ease-in-out,
-    opacity 0.4s ease-in-out;
+  transition: left 0.4s ease-in-out,
+  transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+  border-radius 0.4s ease-in-out,
+  opacity 0.4s ease-in-out;
 }
 
 .sidebar-list {
@@ -657,19 +681,19 @@ p {
 
 .sidebar-pop-out {
   left: -100px;
-border-radius: $sidebar-border-radius;
+  border-radius: $sidebar-border-radius;
   transform: scale(1);
   opacity: 1;
   transition:
     left 0.3s ease-in-out,
-    transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+    moveX 0.8s cubic-bezier(0.34, 3.56, 0.64, 1),//important use moveX instead of transform
     border-radius 0.5s ease-in-out,
     opacity 0.3s ease-in-out;
 }
 
- /*========================================
+/*========================================
                   widget                      
-========================================*/ 
+========================================*/
 .widget {
   position: fixed;
   left: 110px;
@@ -726,6 +750,8 @@ border-radius: $sidebar-border-radius;
   bottom: 20px;
   left: 20px;
   cursor: pointer;
+  width: fit-content;
+  height: fit-content;
 
   .lucy-icon {
     position: absolute;
@@ -799,3 +825,74 @@ border-radius: $sidebar-border-radius;
   border-image: conic-gradient(var(--c2) 0 0) fill 0/ max(var(--b), var(--p) - var(--h)*tan(var(--a)/2)) var(--r) max(var(--b), 100% - var(--p) - var(--h)*tan(var(--a)/2)) 0/0 0 0 var(--h);
 }
 
+
+/*========================================
+               loading                      
+========================================*/
+.loading-container {
+  position: fixed;
+  inset: 0;
+ @include centered;
+ flex-direction: column;
+  z-index: 99999 !important;
+  transition: opacity 0.4s ease;
+     background: repeating-conic-gradient(from 45deg, var(--ui-bg) 0% 25%, var(--secondary-ui-bg) 0% 50%);
+    background-size: 35px 35px;
+    background-color: var(--secondary-ui-bg);
+}
+
+.loading-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+  .status {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+  }
+
+  .loading-bar {
+    position: relative;
+    width: 100%;
+    height: 30px;
+    background: #333;
+    border-radius: 15px;
+   
+
+  }
+
+  .bar-fill {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #4caf50, #8bc34a);
+    border-radius: 15px;
+    transition: width 0.1s linear;
+
+  }
+
+  .moving-image {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 100px;
+    width: 100px;
+    transition: left 0.1s linear;
+
+  }
+
+  #enterBtn {
+    margin-top: 30px;
+    padding: 10px 30px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: not-allowed;
+    opacity: 0.5;
+    transition: all 0.3s;
+  }
+
+  #enterBtn.enabled {
+    cursor: pointer;
+    opacity: 1;
+    background: #4caf50;
+    color: white;
+  }

@@ -7,7 +7,10 @@ const root = document.documentElement;
 
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme) {
-  const period = getDayPeriod();
+
+      root.removeAttribute('data-theme');
+    localStorage.setItem('theme', 'light');
+/*   const period = getDayPeriod();
 
   if (period === 'evening' || period === 'night') {
     root.setAttribute('data-theme', 'dark');
@@ -15,7 +18,7 @@ if (savedTheme) {
   } else {
     root.removeAttribute('data-theme');
     localStorage.setItem('theme', 'light');
-  }
+  } */
 }
 
 toggleButton.addEventListener('click', () => {
@@ -150,15 +153,79 @@ const dialogText = document.getElementById('dialog-text');
 dialogText.textContent = `Good ${period} !`;
 const dialog = document.getElementById('dialog');
 
-dialog.addEventListener('click', () => {
-  dialogText.textContent = "Welcome to my portfolio !";
-});
-
+dialog.addEventListener(
+  "click",
+  (e) => {
+    dialogText.textContent = "Welcome to my portfolio!";
+  });
 /*----------------------- menu icon and sidebar -----------------------*/
 const menuHamburger = document.getElementById("menu-icon");
-const navLinks = document.getElementById("sidebar");
+const sidebar = document.getElementById("sidebar");
 
-menuHamburger.addEventListener('click', () => {
-  menuHamburger.classList.toggle('open');
-  navLinks.classList.toggle('sidebar-pop-out');
+menuHamburger.addEventListener("click", (event) => {
+  menuHamburger.classList.toggle("open");
+  sidebar.classList.toggle("sidebar-pop-out");
 });
+
+document.addEventListener("click", (event) => {
+  const isClickInsideSidebar = sidebar.contains(event.target);
+  const isClickOnMenuIcon = menuHamburger.contains(event.target);
+
+  if (!isClickInsideSidebar && !isClickOnMenuIcon && sidebar.classList.contains("sidebar-pop-out")) {
+    sidebar.classList.remove("sidebar-pop-out");
+    menuHamburger.classList.remove("open");
+  }
+});
+
+
+
+
+
+const bar = document.getElementById('bar-fill');
+  const statusText = document.getElementById('status');
+  const enterBtn = document.getElementById('enterBtn');
+  const movingImg = document.getElementById('movingImg');
+  const loadingBar = document.getElementById('loading-bar');
+
+  let progress = 0;
+
+  const images = {
+    slow: "/lucy-svgs/lucy-slow.svg",
+    fast: "/lucy-svgs/lucy-fast.svg",
+    finished: "/lucy-svgs/lucy-smile.svg"
+  };
+
+  const simulateLoading = () => {
+    const interval = setInterval(() => {
+      // Random speed
+      let speed = Math.random() * 3;
+      progress += speed;
+statusText.textContent = `${Math.floor(progress)}%`;
+      if (progress < 30) {
+        movingImg.src = images.slow;
+      } else if (progress < 100) {
+        movingImg.src = images.fast;
+      } else {
+        progress = 100;
+        movingImg.src = images.finished;
+        enterBtn.classList.add('enabled');
+        enterBtn.disabled = false;
+        clearInterval(interval);
+      }
+
+      bar.style.width = progress + '%';
+
+      const barWidth = loadingBar.offsetWidth;
+      const imgWidth = movingImg.offsetWidth;
+      let leftPos = (progress / 100) * (barWidth - imgWidth);
+      movingImg.style.left = leftPos + "px";
+
+    }, 100);
+  }
+
+  simulateLoading();
+
+  const LoadingPage = document.getElementById('loading-container')
+  enterBtn.addEventListener('click', () => {
+    LoadingPage.classList.toggle('loading-hidden');
+  });

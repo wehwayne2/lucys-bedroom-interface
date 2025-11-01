@@ -29,11 +29,11 @@ $sidebar-border-radius: 100px;
   --card-bg: #fff5ec;
 
   --accent: #FF7879;
-  --secondary-accent: #E2D2C6;
+  --secondary-accent: #E2D2C6;//
   --button-bg: #e58881;
 
   --text-primary: #714B4F;
-  --text-secondary: #714A4F;
+  --text-secondary: #714A4F;//
 
   --hover-highlight-color: #fffff8;
 
@@ -44,17 +44,17 @@ $sidebar-border-radius: 100px;
 }
 
 [data-theme="dark"] {
-  --bg-color: #2f3058;
-  --ui-bg: #dd8c24;
-  --secondary-ui-bg: #0909c8;
-  --card-bg: #1d2c2e;
+  --bg-color: #502f58;
+  --ui-bg: #45696c;
+  --secondary-ui-bg: #46797e;
+  --card-bg: #282a34;
 
-  --accent: #b3ff00;
-  --secondary-accent: #09d3ee;
-  --button-bg: #c30d56;
+  --accent: #87bc8f;
+  --secondary-accent: #9835da;//x
+  --button-bg: #41c396;
 
-  --text-primary: #8cc3bb;
+  --text-primary: #c9e9cf;
   --text-secondary: #ffffff;
 
-  --hover-highlight-color: #bd5858;
+  --hover-highlight-color: #282f52;
 }
