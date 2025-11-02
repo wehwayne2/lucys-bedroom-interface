@@ -22,6 +22,7 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: black;
 }
 
 body:before {
@@ -37,7 +38,7 @@ body:before {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  opacity: 0.95;
+  opacity: 0.8;
   filter: blur(5px);
 }
 
@@ -751,7 +752,7 @@ p {
   bottom: 20px;
   left: 20px;
   cursor: pointer;
-  width: fit-content;
+  max-width: 400px;
   height: fit-content;
 
   .lucy-icon {
@@ -778,9 +779,7 @@ p {
   font-family: 'Sweetie Bubble Gum', cursive;
   color: var(--text-primary);
   width: fit-content;
-  height: 10px;
-  text-align: center;
-  line-height: 4px;
+  height: fit-content;
   padding: 0;
 }
 
@@ -791,7 +790,7 @@ p {
   --h: 0.8rem;
   /* height */
 
-  --p: 100%;
+  --p: 60%;
   /* triangle position (0%:left 100%:right) */
   --r: 1.2em;
   /* the radius */
@@ -800,7 +799,7 @@ p {
   --c1: var(--text-primary);
   --c2: var(--card-bg);
 
-  padding: 1em;
+  padding: 0.7rem 2rem 0.7rem 2rem;
   border-radius: var(--r)/min(var(--r), var(--p) - var(--h)*tan(var(--a)/2)) var(--r) var(--r) min(var(--r), 100% - var(--p) - var(--h)*tan(var(--a)/2));
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%,
       0 min(100%, var(--p) + var(--h)*tan(var(--a)/2)),
@@ -846,7 +845,7 @@ p {
     background-size: $checkerboard-size $checkerboard-size;
     background-color: var(--secondary-ui-bg);
     z-index: -1;
-    box-shadow: inset 0 0 500px 100px var(--ui-bg);
+    box-shadow: inset 0 0 500px 200px var(--ui-bg);
   }
 }
 
