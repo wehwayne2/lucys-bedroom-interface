@@ -179,51 +179,53 @@ document.addEventListener("click", (event) => {
 
 
 
-
+/*----------------------- loading page-----------------------*/
 
 const bar = document.getElementById('bar-fill');
-  const statusText = document.getElementById('status');
   const enterBtn = document.getElementById('enterBtn');
-  const movingImg = document.getElementById('movingImg');
-  const loadingBar = document.getElementById('loading-bar');
 
+const states = {
+  slow: document.querySelector('.state.slow'),
+  fast: document.querySelector('.state.fast'),
+  finished: document.querySelector('.state.finished')
+};
+
+function showState(stateName) {
+  Object.values(states).forEach(s => s.classList.remove('visible'));
+  states[stateName].classList.add('visible');
+}
+
+function updateImagePosition(progress) {
+  Object.values(states).forEach(stateDiv => {
+    stateDiv.querySelectorAll('img').forEach(img => {
+      img.style.left = progress + '%';
+    });
+  });
+}
+
+function simulateLoading() {
   let progress = 0;
+  const interval = setInterval(() => {
+    let speed = Math.random() * 3;
+    progress += speed;
+/*     statusText.textContent = `${Math.floor(progress)}%`; */
 
-  const images = {
-    slow: "/lucy-svgs/lucy-slow.svg",
-    fast: "/lucy-svgs/lucy-fast.svg",
-    finished: "/lucy-svgs/lucy-smile.svg"
-  };
+    if (progress < 30) showState('slow');
+    else if (progress < 100) showState('fast');
+    else {
+      progress = 100;
+      showState('finished');
+      enterBtn.classList.add('enabled');
+      enterBtn.disabled = false;
+      clearInterval(interval);
+    }
 
-  const simulateLoading = () => {
-    const interval = setInterval(() => {
-      // Random speed
-      let speed = Math.random() * 3;
-      progress += speed;
-statusText.textContent = `${Math.floor(progress)}%`;
-      if (progress < 30) {
-        movingImg.src = images.slow;
-        movingImg.dataset.state = "slow";
-      } else if (progress < 100) {
-        movingImg.src = images.fast;
-        movingImg.dataset.state = "fast";
-      } else {
-        progress = 100;
-        movingImg.src = images.finished;
-        movingImg.dataset.state = "finished";
-        enterBtn.classList.add('enabled');
-        enterBtn.disabled = false;
-        clearInterval(interval);
-      }
+    bar.style.width = progress + '%';
+    updateImagePosition(progress);
+  }, 100);
+}
 
-      bar.style.width = progress + '%';
-
-      movingImg.style.left = progress + '%';
-
-    }, 100);
-  }
-
-  simulateLoading();
+simulateLoading();
 
   const LoadingPage = document.getElementById('loading-container')
   enterBtn.addEventListener('click', () => {
