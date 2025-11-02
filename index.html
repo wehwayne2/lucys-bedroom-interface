@@ -13,11 +13,19 @@
 
   <div class="loading-container" id="loading-container">
 
-    <div class="loading-bar" id="loading-bar">
-      <img src="/lucy-svgs/lucy-slow.svg" alt="Moving" id="movingImg" class="moving-image">
-      <div class="bar-fill" id="bar-fill"></div>
-      <div class="status" id="status"></div>
+    <div class="moving-image-wrapper">
+    <img src="/lucy-svgs/lucy-slow.svg" alt="Moving" id="movingImg" class="moving-image">
     </div>
+
+    <div class="status" id="status"></div>
+    <div class="loading-bar" id="loading-bar">
+      <svg class="border-svg" preserveAspectRatio="none">
+        <rect x="0" y="0" />
+      </svg>
+
+      <div class="bar-fill" id="bar-fill"></div>
+    </div>
+
     <button id="enterBtn">Enter</button>
   </div>
 

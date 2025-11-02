@@ -203,11 +203,14 @@ const bar = document.getElementById('bar-fill');
 statusText.textContent = `${Math.floor(progress)}%`;
       if (progress < 30) {
         movingImg.src = images.slow;
+        movingImg.dataset.state = "slow";
       } else if (progress < 100) {
         movingImg.src = images.fast;
+        movingImg.dataset.state = "fast";
       } else {
         progress = 100;
         movingImg.src = images.finished;
+        movingImg.dataset.state = "finished";
         enterBtn.classList.add('enabled');
         enterBtn.disabled = false;
         clearInterval(interval);
