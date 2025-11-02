@@ -837,9 +837,16 @@ p {
   flex-direction: column;
   z-index: 99999 !important;
   transition: opacity 0.4s ease;
-  background: repeating-conic-gradient(from 45deg, var(--ui-bg) 0% 25%, var(--secondary-ui-bg) 0% 50%);
-  background-size: $checkerboard-size $checkerboard-size;
-  background-color: var(--secondary-ui-bg);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-conic-gradient(from 45deg, var(--ui-bg) 0% 25%, var(--secondary-ui-bg) 0% 50%);
+    background-size: $checkerboard-size $checkerboard-size;
+    background-color: var(--secondary-ui-bg);
+    z-index: -1;
+  }
 }
 
 .loading-hidden {
@@ -854,7 +861,7 @@ p {
   .moving-image {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateX(-50%);
     height: 100px;
     width: 100px;
     transition: left 0.1s linear;
@@ -865,6 +872,7 @@ p {
     }
 
     &[data-state="fast"] {
+      top: -300px;
       width: 300px;
       height: 300px;
     }

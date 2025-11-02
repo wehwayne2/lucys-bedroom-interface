@@ -218,10 +218,7 @@ statusText.textContent = `${Math.floor(progress)}%`;
 
       bar.style.width = progress + '%';
 
-      const barWidth = loadingBar.offsetWidth;
-      const imgWidth = movingImg.offsetWidth;
-      let leftPos = (progress / 100) * (barWidth - imgWidth);
-      movingImg.style.left = leftPos + "px";
+      movingImg.style.left = progress + '%';
 
     }, 100);
   }
