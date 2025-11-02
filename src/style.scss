@@ -867,7 +867,8 @@ p {
   left: 0;
   width: 100%;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease,
+  left 0.1s linear;
   pointer-events: none; // optional
 
   &.visible {
@@ -877,7 +878,6 @@ p {
   img {
     position: absolute;
     transform: translateX(-100%);
-    transition: left 0.1s linear;
     scale: 0.7;
    /*  z-index: 1000; */
   }

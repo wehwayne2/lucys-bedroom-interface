@@ -35,7 +35,7 @@ toggleButton.addEventListener('click', () => {
 /*----------------------- fix redraw issue for firebox -----------------------*/
 const isFirefox = typeof InstallTrigger !== 'undefined';
 
-if (isFirefox) {
+
   const svgs = document.querySelectorAll('.border-svg');
 
   function redrawRects() {
@@ -60,7 +60,7 @@ if (isFirefox) {
       redrawRects();
     }, 100);
   });
-}
+
 
 /*----------------------- modal close open -----------------------*/
 const closeBtn = document.getElementById('close-btn');
@@ -195,11 +195,9 @@ function showState(stateName) {
   states[stateName].classList.add('visible');
 }
 
-function updateImagePosition(progress) {
+function updateStatePosition(progress) {
   Object.values(states).forEach(stateDiv => {
-    stateDiv.querySelectorAll('img').forEach(img => {
-      img.style.left = progress + '%';
-    });
+    stateDiv.style.left = progress + '%';
   });
 }
 
@@ -221,7 +219,7 @@ function simulateLoading() {
     }
 
     bar.style.width = progress + '%';
-    updateImagePosition(progress);
+    updateStatePosition(progress)
   }, 100);
 }
 
