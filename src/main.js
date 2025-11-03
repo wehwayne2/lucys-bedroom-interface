@@ -217,7 +217,7 @@ function simulateLoading() {
       enterBtn.disabled = false;
       clearInterval(interval);
     }
-
+progress = Math.min(progress, 100)//for better simulation
     bar.style.width = progress + '%';
     updateStatePosition(progress)
   }, 100);
