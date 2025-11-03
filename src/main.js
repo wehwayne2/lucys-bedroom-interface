@@ -213,6 +213,7 @@ function simulateLoading() {
     else {
       progress = 100;
       showState('finished');
+      showState('slow');
       enterBtn.classList.add('enabled');
       enterBtn.disabled = false;
       clearInterval(interval);
