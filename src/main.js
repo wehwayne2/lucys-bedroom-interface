@@ -94,18 +94,18 @@ function hideModal() {
     }
   });
 
-  gsap.to(modal, {
-    scale: 0,
-    rotation: -5,
-    opacity: 0,
-    duration: 0.6,
-    ease: "back.in(1.5)",
-    delay: 0.1,
-    onComplete: () => {
-      modal.classList.add('hidden');
-      gsap.set(modal, { clearProps: "all" });
-    }
-  });
+gsap.to(modal, {
+  y: "100vh",     
+  opacity: 0,      
+  rotation: 0,     
+  duration: 0.6,
+  ease: "power2.in", 
+  delay: 0.1,
+  onComplete: () => {
+    modal.classList.add('hidden');
+    gsap.set(modal, { clearProps: "all" });
+  }
+});
 }
 
 
