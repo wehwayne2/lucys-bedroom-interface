@@ -836,16 +836,20 @@ p {
   flex-direction: column;
   z-index: 99999 !important;
   transition: opacity 0.4s ease;
-  
+
   &::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: repeating-conic-gradient(from 45deg, var(--ui-bg) 0% 25%, var(--secondary-ui-bg) 0% 50%);
+    background: repeating-conic-gradient(
+      from 45deg,
+      var(--ui-bg) 0% 25%,
+      var(--secondary-ui-bg) 0% 50%
+    );
     background-size: $checkerboard-size $checkerboard-size;
     background-color: var(--secondary-ui-bg);
-    z-index: -1;
     box-shadow: inset 0 0 500px 200px var(--ui-bg);
+    z-index: -1;
   }
 }
 
@@ -855,10 +859,16 @@ p {
 }
 
 .moving-image-wrapper {
+  display: block;
   position: relative;
-  width: 40%;
+    width: 40%;
+  min-width: 250px;
+  max-width: 700px;
   height: fit-content;
   margin: 0 auto;
+   @include mobile {
+      display: none;
+    }
 }
 
 .state {
@@ -867,9 +877,10 @@ p {
   left: 0;
   width: 100%;
   opacity: 0;
-  transition: opacity 0.3s ease,
-  left 0.1s linear;
-  pointer-events: none; // optional
+  transition:
+    opacity 0.3s ease,
+    left 0.1s linear;
+  pointer-events: none; 
 
   &.visible {
     opacity: 1;
@@ -878,28 +889,41 @@ p {
   img {
     position: absolute;
     transform: translateX(-100%);
-    scale: 0.7;
-   /*  z-index: 1000; */
+    scale: 0.65;
   }
 }
 
+.state.finished img {
+  position: absolute;
+}
 
+.state.finished .finished-head {
+  z-index: 2000;
+  top: -15px;
+}
+
+.state.finished img:not(.finished-head) {
+  z-index: 5;
+  top: 100px;
+}
 
 .status {
   position: absolute;
   top: 90px;
-
   margin-bottom: 20px;
   font-size: 1.2rem;
 }
 
 .loading-bar {
   position: relative;
-  width: 40%;
+    width: 40%;
+  min-width: 250px;
+  max-width: 700px;
   height: 30px;
   background: var(--card-bg);
   border-radius: $border-radius-medium;
   overflow: hidden;
+  z-index: 10;
 
   svg rect {
     stroke-width: $stroke-width-medium;
@@ -914,20 +938,18 @@ p {
     height: 100%;
     width: 0;
     background-color: var(--button-bg);
-
     transition: width 0.1s linear;
-
   }
 }
 
-
-
-
-
-
+.enter-container {
+  @include centered;
+  position: absolute;
+  top: 50%;
+  margin-top: 50px;
+}
 
 #enterBtn {
-  margin-top: 50px;
   padding: 10px 30px;
   font-size: 1.8rem;
   font-family: 'Sweetie Bubble Gum', cursive;
