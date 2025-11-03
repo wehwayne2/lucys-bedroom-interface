@@ -8,17 +8,17 @@ const root = document.documentElement;
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme) {
 
+  root.removeAttribute('data-theme');
+  localStorage.setItem('theme', 'light');
+  /*   const period = getDayPeriod();
+  
+    if (period === 'evening' || period === 'night') {
+      root.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
       root.removeAttribute('data-theme');
-    localStorage.setItem('theme', 'light');
-/*   const period = getDayPeriod();
-
-  if (period === 'evening' || period === 'night') {
-    root.setAttribute('data-theme', 'dark');
-    localStorage.setItem('theme', 'dark');
-  } else {
-    root.removeAttribute('data-theme');
-    localStorage.setItem('theme', 'light');
-  } */
+      localStorage.setItem('theme', 'light');
+    } */
 }
 
 toggleButton.addEventListener('click', () => {
@@ -36,30 +36,30 @@ toggleButton.addEventListener('click', () => {
 const isFirefox = typeof InstallTrigger !== 'undefined';
 
 
-  const svgs = document.querySelectorAll('.border-svg');
+const svgs = document.querySelectorAll('.border-svg');
 
-  function redrawRects() {
-    svgs.forEach(svg => {
-      const rect = svg.querySelector('rect');
-      if (!rect) return;
+function redrawRects() {
+  svgs.forEach(svg => {
+    const rect = svg.querySelector('rect');
+    if (!rect) return;
 
-      const newRect = rect.cloneNode(true);
-      svg.removeChild(rect);
-      svg.appendChild(newRect);
-    });
-  }
-
-  redrawRects();
-
-  window.addEventListener('load', redrawRects);
-
-  let resizeTimeout;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-      redrawRects();
-    }, 100);
+    const newRect = rect.cloneNode(true);
+    svg.removeChild(rect);
+    svg.appendChild(newRect);
   });
+}
+
+redrawRects();
+
+window.addEventListener('load', redrawRects);
+
+let resizeTimeout;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => {
+    redrawRects();
+  }, 100);
+});
 
 
 /*----------------------- modal close open -----------------------*/
@@ -109,10 +109,10 @@ function hideModal() {
 }
 
 
-  closeBtn.addEventListener('click', (event) => {
-    event.stopPropagation(); //important
-    hideModal();
-  });
+closeBtn.addEventListener('click', (event) => {
+  event.stopPropagation(); //important
+  hideModal();
+});
 
 /*----------------------- digital clock -----------------------*/
 function updateClock() {
@@ -182,7 +182,7 @@ document.addEventListener("click", (event) => {
 /*----------------------- loading page-----------------------*/
 
 const bar = document.getElementById('bar-fill');
-  const enterBtn = document.getElementById('enterBtn');
+const enterBtn = document.getElementById('enterBtn');
 
 const states = {
   slow: document.querySelector('.state.slow'),
@@ -206,19 +206,18 @@ function simulateLoading() {
   const interval = setInterval(() => {
     let speed = Math.random() * 3;
     progress += speed;
-/*     statusText.textContent = `${Math.floor(progress)}%`; */
+    /*     statusText.textContent = `${Math.floor(progress)}%`; */
 
     if (progress < 30) showState('slow');
     else if (progress < 100) showState('fast');
     else {
       progress = 100;
       showState('finished');
-      showState('slow');
       enterBtn.classList.add('enabled');
       enterBtn.disabled = false;
       clearInterval(interval);
     }
-progress = Math.min(progress, 100)//for better simulation
+    progress = Math.min(progress, 100)//for better simulation
     bar.style.width = progress + '%';
     updateStatePosition(progress)
   }, 100);
@@ -226,7 +225,7 @@ progress = Math.min(progress, 100)//for better simulation
 
 simulateLoading();
 
-  const LoadingPage = document.getElementById('loading-container')
-  enterBtn.addEventListener('click', () => {
-    LoadingPage.classList.toggle('loading-hidden');
-  });
+const LoadingPage = document.getElementById('loading-container')
+enterBtn.addEventListener('click', () => {
+  LoadingPage.classList.toggle('loading-hidden');
+});

@@ -22,7 +22,7 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: black;
+  background-color: var(--ui-bg);
 }
 
 body:before {
@@ -227,7 +227,7 @@ p {
 
       //firebox
       scrollbar-width: thin;
-      scrollbar-color: var(--accent) var(--card-bg);
+      scrollbar-color: var(--button-bg) var(--card-bg);
 
       &::-webkit-scrollbar {
         width: 8px;
@@ -240,7 +240,7 @@ p {
       }
 
       &::-webkit-scrollbar-thumb {
-        background-color: var(--accent);
+        background-color: var(--button-bg);
         border-radius: 4px;
       }
 
@@ -843,20 +843,16 @@ p {
     inset: 0;
 
     background:
-       radial-gradient(
-    ellipse 60% 50% at 50% 60%,
-    var(--ui-bg) 80%,
-    transparent 120%
-  ),
-      repeating-conic-gradient(
-        from 45deg,
+      radial-gradient(ellipse 60% 50% at 50% 50%,
+        var(--ui-bg) 50%,
+        transparent 170%),
+      repeating-conic-gradient(from 45deg,
         var(--ui-bg) 0% 25%,
-        var(--secondary-ui-bg) 0% 50%
-      );
+        var(--secondary-ui-bg) 0% 50%);
 
-    background-size: 
-      100% 100%,              
-      $checkerboard-size $checkerboard-size; 
+    background-size:
+      100% 100%,
+      $checkerboard-size $checkerboard-size;
 
     background-color: var(--secondary-ui-bg);
     z-index: -1;
@@ -871,14 +867,15 @@ p {
 .moving-image-wrapper {
   display: block;
   position: relative;
-    width: 40%;
+  width: 40%;
   min-width: 250px;
   max-width: 700px;
   height: fit-content;
   margin: 0 auto;
-   @include mobile {
-      display: none;
-    }
+
+  @include mobile {
+    display: none;
+  }
 }
 
 .state {
@@ -888,9 +885,9 @@ p {
   width: 100%;
   opacity: 0;
   transition:
-    /* opacity 0.3s ease, */
+    /*     opacity 0.1s ease, */
     left 0.1s linear;
-  pointer-events: none; 
+  pointer-events: none;
 
   &.visible {
     opacity: 1;
@@ -900,15 +897,15 @@ p {
     position: absolute;
     transform: translateX(-100%);
     scale: $lucy-scale;
- transform-box: fill-box;   
-  transform-origin: center; 
+    transform-box: fill-box;
+    transform-origin: center;
   }
 }
 
 .state.slow .slow-head {
   z-index: 2000;
   top: -20px;
-  animation: lucyHeadBob 1.5s linear infinite;
+  animation: lucyHeadSlow 3s ease-in-out infinite;
 }
 
 .state.slow .slow-body {
@@ -916,14 +913,14 @@ p {
   scale: calc($lucy-scale * 1.2);
   top: 80px;
   left: 10px;
-  animation: lucyBodyFloat 3s ease-in-out infinite;
+  animation: lucyBodySlow 3s ease-in-out infinite;
 }
 
 .state.slow .slow-lefthand {
   z-index: 2000;
   top: 85px;
   left: -24px;
-  animation: lucyLeftHandWave 2s ease-in-out infinite;
+  animation: lucyLefthandSlow 3s ease-in-out infinite;
 }
 
 .state.slow .slow-righthand {
@@ -931,78 +928,213 @@ p {
   top: 95px;
   left: 10px;
   rotate: 30deg;
-  animation: lucyRightHandWave 2s ease-in-out infinite;
+  animation: lucyRighthandSlow 3s ease-in-out infinite;
 }
 
+@keyframes lucyHeadSlow {
 
-@keyframes lucyHeadBob {
-  0%, 100% { transform: translateX(-100%) translateY(0%) rotate(0deg); }
-  50% { transform: translateX(-100%) translateY(10px) rotate(5deg); }
-}
-/* 
-@keyframes lucyBodyFloat {
-  0%, 100% { transform: translateY(0) scale(1.2); }
-  50% { transform: translateY(3px) scale(1.22); }
-}
+  0%,
+  100% {
+    transform: translateX(-100%) translateY(-2%) rotate(0deg);
+  }
 
-@keyframes lucyLeftHandWave {
-  0%, 100% { transform: rotate(10deg); }
-  50% { transform: rotate(25deg); }
+  50% {
+    transform: translateX(-100%) translateY(2%) rotate(5deg);
+  }
 }
 
-@keyframes lucyRightHandWave {
-  0%, 100% { transform: rotate(30deg); }
-  50% { transform: rotate(10deg); }
-} */
+@keyframes lucyBodySlow {
+
+  0%,
+  100% {
+    transform: translateX(-100%) translateY(0%) rotate(0deg);
+  }
+
+  50% {
+    transform: translateX(-100%) translateY(3%) rotate(5deg);
+  }
+}
+
+@keyframes lucyLefthandSlow {
+
+  0%,
+  100% {
+    transform: translateX(-100%) translateY(5%) rotate(0deg);
+  }
+
+  50% {
+    transform: translateX(-100%) translateY(-1%) rotate(15deg);
+  }
+}
+
+@keyframes lucyRighthandSlow {
+
+  0%,
+  100% {
+    transform: translateX(-100%) translateY(4%) rotate(0deg);
+  }
+
+  50% {
+    transform: translateX(-100%) translateY(-1%) rotate(-15deg);
+  }
+}
 
 .state.fast .fast-head {
   z-index: 2000;
   top: -62px;
   left: -10px;
+  animation: lucyHeadFast 1.5s ease-in-out infinite;
 }
 
-.state.fast .fast-body{
+.state.fast .fast-body {
   z-index: 5;
   scale: calc($lucy-scale * 1.2);
   top: 70px;
   left: 10px;
   rotate: -12deg;
-  
+  animation: lucyBodyFast 1.5s ease-in-out infinite;
+
 }
-.state.fast .fast-lefthand{
+
+.state.fast .fast-lefthand {
   z-index: 2000;
   top: 90px;
   left: -23px;
   rotate: 20deg;
+  animation: lucyLefthandFast 1.5s ease-in-out infinite;
 }
-.state.fast .fast-righthand{
+
+.state.fast .fast-righthand {
   z-index: 2000;
   top: 57px;
   left: 12px;
   rotate: -60deg;
+  animation: lucyRighthandFast 1.5s ease-in-out infinite;
+}
+
+@keyframes lucyHeadFast {
+
+  0%,
+  100% {
+    transform: translateX(-100%) translateY(0%) rotate(0deg);
+  }
+
+  50% {
+    transform: translateX(-102%) translateY(2%) rotate(8deg);
+  }
+}
+
+@keyframes lucyBodyFast {
+
+  0%,
+  100% {
+    transform: translateX(-100%) translateY(0%) rotate(0deg);
+  }
+
+  50% {
+    transform: translateX(-120%) translateY(2%) rotate(10deg);
+  }
+}
+
+@keyframes lucyLefthandFast {
+
+  0%,
+  100% {
+    transform: translateX(-100%) translateY(-4%) rotate(0deg);
+  }
+
+  50% {
+    transform: translateX(-150%) translateY(0%) rotate(20deg);
+  }
+}
+
+@keyframes lucyRighthandFast {
+
+  0%,
+  100% {
+    transform: translateX(-100%) translateY(4%) rotate(0deg);
+  }
+
+  50% {
+    transform: translateX(-120%) translateY(-10%) rotate(-10deg);
+  }
 }
 
 .state.finished .finished-head {
   z-index: 2000;
   top: -18px;
+    animation: lucyHeadFinished 3s ease-in-out infinite;
 }
 
-.state.finished .finished-body{
+.state.finished .finished-body {
   z-index: 5;
   scale: calc($lucy-scale * 1.2);
   top: 80px;
   left: 10px;
-  
+  animation: lucyBodyFinished 3s ease-in-out infinite;
+
 }
-.state.finished .finished-lefthand{
+
+.state.finished .finished-lefthand {
   z-index: 2000;
   top: 85px;
   left: -22px;
+  animation: lucyLefthandFinished 3s ease-in-out infinite;
 }
-.state.finished .finished-righthand{
+
+.state.finished .finished-righthand {
   z-index: 2000;
   top: 80px;
   left: 22px;
+  animation: lucyRighthandFinished 3s ease-in-out infinite;
+}
+
+@keyframes lucyHeadFinished {
+
+  0%,
+  100% {
+    transform: translateX(-100%) translateY(-0%) rotate(0deg);
+  }
+
+  50% {
+    transform: translateX(-100%) translateY(2%) rotate(5deg);
+  }
+}
+
+@keyframes lucyBodyFinished {
+
+  0%,
+  100% {
+    transform: translateX(-100%) translateY(0%) rotate(0deg);
+  }
+
+  50% {
+    transform: translateX(-100%) translateY(3%) rotate(2deg);
+  }
+}
+
+@keyframes lucyLefthandFinished {
+
+  0%,
+  100% {
+    transform: translateX(-100%) translateY(5%) rotate(0deg);
+  }
+
+  50% {
+    transform: translateX(-100%) translateY(-1%) rotate(15deg);
+  }
+}
+
+@keyframes lucyRighthandFinished {
+
+  0%,
+  100% {
+    transform: translateX(-100%) translateY(4%) rotate(0deg);
+  }
+
+  50% {
+    transform: translateX(-100%) translateY(-1%) rotate(-15deg);
+  }
 }
 
 .status {
@@ -1014,7 +1146,7 @@ p {
 
 .loading-bar {
   position: relative;
-    width: 40%;
+  width: 40%;
   min-width: 250px;
   max-width: 700px;
   height: 25px;
@@ -1036,6 +1168,7 @@ p {
     height: 100%;
     width: 0;
     background-color: var(--button-bg);
+    border-right: solid $border var(--text-primary);
     transition: width 0.1s linear;
   }
 }
@@ -1046,6 +1179,11 @@ p {
   top: 50%;
   margin-top: 50px;
 }
+
+
+
+
+
 
 #enterBtn {
   padding: 10px 30px;
