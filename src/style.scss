@@ -740,92 +740,6 @@ p {
     }
   }
 }
-
-/*========================================
-               dialog                      
-========================================*/
-.dialog {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  cursor: pointer;
-  max-width: 400px;
-  height: fit-content;
-
-  .lucy-icon {
-    position: absolute;
-    top: 0%;
-    left: 0%;
-
-    width: 120px;
-    height: 120px;
-    background: var(--button-bg);
-    border-radius: 50%;
-    z-index: 1;
-  }
-
-  img {
-    position: relative;
-    z-index: 99;
-    width: 120px;
-    height: 120px;
-  }
-}
-
-.tooltip {
-  font-family: 'Sweetie Bubble Gum', cursive;
-  color: var(--text-primary);
-  width: fit-content;
-  height: fit-content;
-  padding: 0;
-}
-
-.tooltip {
-  /* triangle dimension */
-  --a: 70deg;
-  /* angle */
-  --h: 0.8rem;
-  /* height */
-
-  --p: 60%;
-  /* triangle position (0%:left 100%:right) */
-  --r: 1.2em;
-  /* the radius */
-  --b: 3px;
-  /* border width  */
-  --c1: var(--text-primary);
-  --c2: var(--card-bg);
-
-  padding: 0.7rem 2rem 0.7rem 2rem;
-  border-radius: var(--r)/min(var(--r), var(--p) - var(--h)*tan(var(--a)/2)) var(--r) var(--r) min(var(--r), 100% - var(--p) - var(--h)*tan(var(--a)/2));
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%,
-      0 min(100%, var(--p) + var(--h)*tan(var(--a)/2)),
-      calc(-1*var(--h)) var(--p),
-      0 max(0%, var(--p) - var(--h)*tan(var(--a)/2)));
-  background: var(--c1);
-  border-image: conic-gradient(var(--c1) 0 0) fill 0/ max(0%, var(--p) - var(--h)*tan(var(--a)/2)) var(--r) max(0%, 100% - var(--p) - var(--h)*tan(var(--a)/2)) 0/0 0 0 var(--h);
-  position: relative;
-}
-
-.tooltip:before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  padding: var(--b);
-  border-radius: inherit;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%,
-      var(--b) min(100% - var(--b), var(--p) + var(--h)*tan(var(--a)/2) - var(--b)*tan(45deg - var(--a)/4)),
-      calc(var(--b)/sin(var(--a)/2) - var(--h)) var(--p),
-      var(--b) max(var(--b), var(--p) - var(--h)*tan(var(--a)/2) + var(--b)*tan(45deg - var(--a)/4)));
-  background: var(--c2) content-box;
-  border-image: conic-gradient(var(--c2) 0 0) fill 0/ max(var(--b), var(--p) - var(--h)*tan(var(--a)/2)) var(--r) max(var(--b), 100% - var(--p) - var(--h)*tan(var(--a)/2)) 0/0 0 0 var(--h);
-}
-
-
 /*========================================
                loading                      
 ========================================*/
@@ -844,7 +758,7 @@ p {
 
     background:
       radial-gradient(ellipse 60% 50% at 50% 50%,
-        var(--ui-bg) 50%,
+        var(--ui-bg) 30%,
         transparent 170%),
       repeating-conic-gradient(from 45deg,
         var(--ui-bg) 0% 25%,
@@ -856,6 +770,21 @@ p {
 
     background-color: var(--secondary-ui-bg);
     z-index: -1;
+
+    animation: moveCheckerboard 8s linear infinite;
+  }
+}
+
+@keyframes moveCheckerboard {
+  0% {
+    background-position:
+      0 0,
+      0 0; /* first = radial, second = checkerboard */
+  }
+  100% {
+    background-position:
+      0 0,
+      100px 100px; /* tweak for desired motion */
   }
 }
 

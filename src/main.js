@@ -131,33 +131,6 @@ function updateClock() {
 
 setInterval(updateClock, 1000);
 updateClock();
-
-/*----------------------- dialog -----------------------*/
-function getDayPeriod() {
-  const hour = new Date().getHours();
-
-  if (hour >= 5 && hour < 12) {
-    return 'morning';
-  } else if (hour >= 12 && hour < 17) {
-    return 'afternoon';
-  } else if (hour >= 17 && hour < 21) {
-    return 'evening';
-  } else {
-    return 'night';
-  }
-}
-
-const period = getDayPeriod();
-
-const dialogText = document.getElementById('dialog-text');
-dialogText.textContent = `Good ${period} !`;
-const dialog = document.getElementById('dialog');
-
-dialog.addEventListener(
-  "click",
-  (e) => {
-    dialogText.textContent = "Welcome to my portfolio!";
-  });
 /*----------------------- menu icon and sidebar -----------------------*/
 const menuHamburger = document.getElementById("menu-icon");
 const sidebar = document.getElementById("sidebar");
