@@ -650,12 +650,20 @@ p {
   align-items: center;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
-  transform: scale(0.8);
+ 
   opacity: 0;
-  transition: left 0.4s ease-in-out,
-  transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55),
-  border-radius 0.4s ease-in-out,
-  opacity 0.4s ease-in-out;
+   transform: scaleX(0);
+  transition:
+    left 0.3s ease-in-out,
+    transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-radius 0.5s ease-in-out,
+    opacity 0.3s ease-in-out;
+    @include mobile {
+   width: 100%;
+    svg rect {
+  display: none;
+  }
+  }
 }
 
 .sidebar-list {
@@ -684,13 +692,13 @@ p {
 .sidebar-pop-out {
   left: -100px;
   border-radius: $sidebar-border-radius;
-  transform: scale(1);
+  transform: translateX(0) scale(1);
   opacity: 1;
-  transition:
-    left 0.3s ease-in-out,
-    moveX 0.8s cubic-bezier(0.34, 3.56, 0.64, 1), //important use moveX instead of transform
-    border-radius 0.5s ease-in-out,
-    opacity 0.3s ease-in-out;
+   transform: scaleX(1);
+      @include mobile {
+    left: 0;
+    border-radius: 0;
+  }
 }
 
 /*========================================
