@@ -132,7 +132,7 @@ function updateClock() {
 setInterval(updateClock, 1000);
 updateClock();
 /*----------------------- menu icon and sidebar -----------------------*/
-const menuHamburger = document.getElementById("menu-icon");
+const menuHamburger = document.querySelector('.menu-icon');
 const sidebar = document.getElementById("sidebar");
 
 menuHamburger.addEventListener("click", (event) => {

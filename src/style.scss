@@ -612,18 +612,11 @@ p {
 
       .div-3 {
         top: 15px;
-        transform: rotate(-45deg);
-      }
-
-      .div-1 {
-        background-color: blue;
+        transform: rotate(-45deg); 
       }
     }
   }
 }
-
-
-
 /*========================================
                 sidebar                      
 ========================================*/
@@ -650,19 +643,37 @@ p {
   align-items: center;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
- 
-  opacity: 0;
-   transform: scaleX(0);
-  transition:
-    left 0.3s ease-in-out,
-    transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1),
-    border-radius 0.5s ease-in-out,
-    opacity 0.3s ease-in-out;
-    @include mobile {
-   width: 100%;
+  border-right : 60px solid var(--button-bg);
+  opacity: 1;
+  transform: scaleX(1);
+  transition: left 0.3s ease-in-out,
+  transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1),
+  border-radius 0.5s ease-in-out,
+  border-width 1.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+  opacity 0.3s ease-in-out;
+
+  @include mobile {
+    width: 100%;
+    transform: scaleX(1);
+    left: -100%;
+
     svg rect {
-  display: none;
+      display: none;
+    }
   }
+}
+
+.sidebar-pop-out {
+  left: -100px;
+  border-radius: $sidebar-border-radius;
+  transform: translateX(0) scale(1.0);
+  border-right: 0px solid var(--button-bg);
+  opacity: 1;
+  transform: scaleX(1);
+
+  @include mobile {
+    left: 0;
+    border-radius: 0;
   }
 }
 
@@ -689,17 +700,7 @@ p {
   }
 }
 
-.sidebar-pop-out {
-  left: -100px;
-  border-radius: $sidebar-border-radius;
-  transform: translateX(0) scale(1);
-  opacity: 1;
-   transform: scaleX(1);
-      @include mobile {
-    left: 0;
-    border-radius: 0;
-  }
-}
+
 
 /*========================================
                   widget                      
@@ -748,6 +749,7 @@ p {
     }
   }
 }
+
 /*========================================
                loading                      
 ========================================*/
@@ -787,12 +789,15 @@ p {
   0% {
     background-position:
       0 0,
-      0 0; /* first = radial, second = checkerboard */
+      0 0;
+    /* first = radial, second = checkerboard */
   }
+
   100% {
     background-position:
       0 0,
-      100px 100px; /* tweak for desired motion */
+      100px 100px;
+    /* tweak for desired motion */
   }
 }
 
@@ -1000,7 +1005,7 @@ p {
 .state.finished .finished-head {
   z-index: 2000;
   top: -18px;
-    animation: lucyHeadFinished 3s ease-in-out infinite;
+  animation: lucyHeadFinished 3s ease-in-out infinite;
 }
 
 .state.finished .finished-body {
