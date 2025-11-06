@@ -528,7 +528,6 @@ p {
   width: calc(var(--size-of-icon) + 0.3rem);
   height: calc(var(--size-of-icon) + 0.3rem);
   left: calc(var(--slider-offset) + 0.3rem);
-
 }
 
 .sound-switch-wrapper input:checked+.sound-slider::before {
@@ -760,29 +759,8 @@ p {
   flex-direction: column;
   z-index: 99999 !important;
   transition: opacity 0.4s ease;
+background-color: var(--button-bg);
 
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-
-    background:
-      radial-gradient(ellipse 60% 50% at 50% 50%,
-        var(--ui-bg) 30%,
-        transparent 170%),
-      repeating-conic-gradient(from 45deg,
-        var(--ui-bg) 0% 25%,
-        var(--secondary-ui-bg) 0% 50%);
-
-    background-size:
-      100% 100%,
-      $checkerboard-size $checkerboard-size;
-
-    background-color: var(--secondary-ui-bg);
-    z-index: -1;
-
-    animation: moveCheckerboard 8s linear infinite;
-  }
 }
 
 @keyframes moveCheckerboard {
@@ -804,6 +782,48 @@ p {
 .loading-hidden {
   opacity: 0;
   pointer-events: none;
+}
+
+.loading-content {
+  width: 98%;
+  height: 98%;
+    flex-direction: column;
+    box-shadow: $box-shadow;
+
+ position: relative;
+  overflow: hidden;
+  border-radius: $border-radius;
+  inset: 0;
+  @include centered;
+    &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+
+    background:
+      radial-gradient(ellipse 10% 10% at 50% 50%,
+        var(--ui-bg) 30%,
+        transparent 1000%),
+      repeating-conic-gradient(from 45deg,
+        var(--ui-bg) 0% 25%,
+        var(--secondary-ui-bg) 0% 50%);
+
+    background-size:
+      100% 100%,
+      $checkerboard-size $checkerboard-size;
+
+    background-color: var(--secondary-ui-bg);
+    z-index: -1;
+
+    animation: moveCheckerboard 8s linear infinite;
+  }
+    svg rect {
+          stroke-width: 4px;
+          stroke: var(--text-primary);
+          rx: $border-radius;
+          ry: $border-radius;
+        }
+  
 }
 
 .moving-image-wrapper {
@@ -1097,6 +1117,7 @@ p {
   overflow: hidden;
   z-index: 10;
 
+
   svg rect {
     stroke-width: $stroke-width-medium;
     stroke: var(--text-primary);
@@ -1125,21 +1146,23 @@ p {
 
 
 
-
-
 #enterBtn {
-  padding: 10px 30px;
+  padding: 5px 10px;
   font-size: 1.8rem;
   font-family: 'Sweetie Bubble Gum', cursive;
+  -webkit-text-stroke: 2px var(--text-primary);
   color: var(--card-bg);
-  border: none;
-  border-radius: 5px;
+  border: solid 2.5px var(--text-primary);
+  border-radius: $border-radius-medium;
   cursor: not-allowed;
-  background-color: black;
+   /*  box-shadow: $box-shadow; */
   transition: all 0.3s;
   z-index: 999;
   display: none;
 }
+
+
+
 
 #enterBtn.enabled {
   cursor: pointer;
@@ -1147,4 +1170,16 @@ p {
   background: var(--button-bg);
   color: white;
   display: block;
+}
+
+#enterBtn-mute{
+    padding: 5px 10px;
+  font-size: 1.5rem;
+  font-family: 'Sweetie Bubble Gum', cursive;
+  -webkit-text-stroke: 2px var(--text-primary);
+  color: var(--card-bg);
+ background-color: transparent;
+ border: none; 
+  transition: all 0.3s;
+  z-index: 999;
 }
