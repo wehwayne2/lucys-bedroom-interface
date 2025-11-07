@@ -183,13 +183,19 @@ function simulateLoading() {
 
     if (progress < 30) showState('slow');
     else if (progress < 100) showState('fast');
-    else {
-      progress = 100;
-      showState('finished');
-      enterBtn.classList.add('enabled');
-      enterBtn.disabled = false;
-      clearInterval(interval);
-    }
+else {
+  progress = 100;
+  showState('finished');
+  enterBtn.classList.add('enabled');
+  enterBtn.disabled = false;
+  
+  const muteBtn = document.querySelector('#enterBtn-mute');
+  muteBtn.classList.add('enabled'); 
+  muteBtn.disabled = false;
+  
+  clearInterval(interval);
+
+}
     progress = Math.min(progress, 100)//for better simulation
     bar.style.width = progress + '%';
     updateStatePosition(progress)

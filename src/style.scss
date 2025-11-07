@@ -186,6 +186,7 @@ p {
     }
 
     .modal-header {
+      position: relative; 
       display: flex;
       align-items: baseline;
       justify-content: center;
@@ -224,10 +225,9 @@ p {
       border-radius: 0 0 $border-radius $border-radius;
       position: relative; //dont overlay on scrollbar
       z-index: 9; //dont overlay on scrollbar
-
-      //firebox
-      scrollbar-width: thin;
-      scrollbar-color: var(--button-bg) var(--card-bg);
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+      touch-action: pan-y;
 
       &::-webkit-scrollbar {
         width: 8px;
@@ -236,7 +236,7 @@ p {
       &::-webkit-scrollbar-track {
         width: 2px;
         border-radius: 4px;
-        background-color: var(--card-bg);
+        background-color: var(--ui-bg);
       }
 
       &::-webkit-scrollbar-thumb {
@@ -611,11 +611,12 @@ p {
 
       .div-3 {
         top: 15px;
-        transform: rotate(-45deg); 
+        transform: rotate(-45deg);
       }
     }
   }
 }
+
 /*========================================
                 sidebar                      
 ========================================*/
@@ -759,7 +760,7 @@ p {
   flex-direction: column;
   z-index: 99999 !important;
   transition: opacity 0.4s ease;
-background-color: var(--button-bg);
+  background-color: var(--button-bg);
 
 }
 
@@ -787,20 +788,22 @@ background-color: var(--button-bg);
 .loading-content {
   width: 98%;
   height: 98%;
-    flex-direction: column;
-    box-shadow: $box-shadow;
+  flex-direction: column;
 
- position: relative;
+  box-shadow: $box-shadow;
+  position: relative;
   overflow: hidden;
   border-radius: $border-radius;
   inset: 0;
   @include centered;
-    &::before {
+
+  &::before {
     content: '';
     position: absolute;
-    inset: 0;
 
+     inset: 0;
     background:
+    
       radial-gradient(ellipse 10% 10% at 50% 50%,
         var(--ui-bg) 30%,
         transparent 1000%),
@@ -817,13 +820,15 @@ background-color: var(--button-bg);
 
     animation: moveCheckerboard 8s linear infinite;
   }
-    svg rect {
-          stroke-width: 4px;
-          stroke: var(--text-primary);
-          rx: $border-radius;
-          ry: $border-radius;
-        }
-  
+
+
+  svg rect {
+    stroke-width: 6px;
+    stroke: var(--text-primary);
+    rx: $border-radius;
+    ry: $border-radius;
+  }
+
 }
 
 .moving-image-wrapper {
@@ -1125,15 +1130,16 @@ background-color: var(--button-bg);
     ry: $border-radius-medium;
   }
 
-  .bar-fill {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 0;
-    background-color: var(--button-bg);
-    border-right: solid $border var(--text-primary);
-    transition: width 0.1s linear;
-  }
+.bar-fill {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 0;
+  inset: 0px;
+  background: var(--button-bg);
+transition: width 0.1s linear;
+  border-right: solid $border var(--text-primary);
+}
 }
 
 .enter-container {
@@ -1141,10 +1147,8 @@ background-color: var(--button-bg);
   position: absolute;
   top: 50%;
   margin-top: 50px;
+  gap: 15px;
 }
-
-
-
 
 #enterBtn {
   padding: 5px 10px;
@@ -1155,31 +1159,50 @@ background-color: var(--button-bg);
   border: solid 2.5px var(--text-primary);
   border-radius: $border-radius-medium;
   cursor: not-allowed;
-   /*  box-shadow: $box-shadow; */
-  transition: all 0.3s;
+  transition: all 0.3s ease;
   z-index: 999;
   display: none;
+  opacity: 0;
+  transform-origin: center;
 }
-
-
-
 
 #enterBtn.enabled {
   cursor: pointer;
-  opacity: 1;
   background: var(--button-bg);
-  color: white;
+  color: var(--card-bg);
   display: block;
+  opacity: 1;
 }
 
-#enterBtn-mute{
-    padding: 5px 10px;
+#enterBtn-mute.enabled {
+  cursor: pointer;
+  color: var(--card-bg);
+  display: block;
+  opacity: 1;
+}
+
+#enterBtn-mute {
+  padding: 5px 10px;
   font-size: 1.5rem;
   font-family: 'Sweetie Bubble Gum', cursive;
   -webkit-text-stroke: 2px var(--text-primary);
   color: var(--card-bg);
- background-color: transparent;
- border: none; 
-  transition: all 0.3s;
+  background-color: transparent;
+  border: none;
+  transition: all 0.3s ease;
   z-index: 999;
+  opacity: 0;
 }
+
+#enterBtn:hover,
+#enterBtn-mute:hover {
+  transform: scale(1.1) translateY(-3px) !important;
+  transition: all 0.2s ease;
+}
+
+/* #enterBtn:active,
+#enterBtn-mute:active {
+  transform: scale(0.95) translateY(0px) !important;
+  transition: all 0.1s ease;
+} */
+
