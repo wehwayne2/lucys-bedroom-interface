@@ -1,44 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Toggle Example</title>
-  <style>
-    /* Initially hide the div */
-    .hidden {
-      display: none;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Page Transition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    /* Visible class makes it show */
-    .visible {
-      display: block;
-      background-color: lightblue;
-      padding: 20px;
-      margin-top: 10px;
-    }
-  </style>
+        body {
+            overflow: hidden;
+        }
+
+        /* Main Content (behind loading page) */
+        .main-content {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: blue;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        /* Loading Page */
+        .loading-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: red;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .loading-page.hidden {
+            animation: 2s melt-leave forwards;
+            pointer-events: none;
+        }
+
+        .loading-content {
+            text-align: center;
+            color: white;
+        }
+
+        .enter-button {
+            padding: 1rem 3rem;
+            font-size: 1.2rem;
+            background: white;
+            color: #1e3c72;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+@keyframes melt-leave {
+  0% {
+    clip-path: path('M0 1080C80 1170 160 1215 240 1215C360 1215 351 1083 480 1080C609 1077 600 1451 720 1451C840 1451 840 1123 960 1080C1080 1037 1079 1278 1200 1278C1321 1278 1326 1062 1445 1080C1563 1098 1557 1350 1676 1350C1755 1350 1836 1260 1920 1080L1920 0L0 0L0 1080Z');
+  }
+  100% {
+    clip-path: path('M0 0C80 -383 160 -574 240 -574C360 -574 351 -168 480 -271C609 -191 600 -456 720 -456C840 -456 840 -46 960 -68C1080 -90 1079 -542 1200 -542C1321 -542 1326 -212 1445 -204C1563 -195 1557 -508 1676 -508C1755 -508 1836 -339 1920 0L1920 0L0 0L0 0Z');
+  }
+}
+    </style>
 </head>
 <body>
+    <!-- Main Content (will be revealed) -->
+    <div class="main-content">
+        <div class="content-inner">
+            <h1>Welcome to Your Site</h1>
+            <p>This is the main content that was hidden behind the loading page</p>
+        </div>
+    </div>
 
-  <button id="toggleButton">Toggle Div</button>
+    <!-- Loading Page (will be masked away) -->
+    <div class="loading-page" id="loadingPage">
+        <div class="loading-content">
+            <h2>Welcome</h2>
+            <button class="enter-button" id="enterBtn">Enter</button>
+        </div>
+    </div>
 
-  <div id="myDiv" class="hidden">
-    Hello! I appear and disappear when you click the button.
-  </div>
+    <script>
+        const enterBtn = document.getElementById('enterBtn');
+        const loadingPage = document.getElementById('loadingPage');
 
-  <script>
-    const button = document.getElementById('toggleButton');
-    const div = document.getElementById('myDiv');
-
-    button.addEventListener('click', () => {
-      // Toggle the "visible" class
-      div.classList.toggle('visible');
-
-      // Optional: toggle the "hidden" class to hide when not visible
-      div.classList.toggle('hidden');
-    });
-  </script>
-
+        enterBtn.addEventListener('click', () => {
+            loadingPage.classList.add('hidden');
+        });
+    </script>
 </body>
 </html>
