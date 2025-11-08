@@ -781,8 +781,13 @@ p {
 }
 
 .loading-hidden {
-  animation: 2s melt-leave forwards;
+  animation: 4s melt-leave forwards;
   pointer-events: none;
+  .loading-content{
+    width: 120%;
+    height: 120%;
+    inset: -30px;
+  }
 }
 
 @keyframes melt-leave {
@@ -797,6 +802,7 @@ p {
 .loading-content {
   width: 98%;
   height: 98%;
+  transition: width 1s ease, height 1s ease, inset 2s ease;
   flex-direction: column;
 
   box-shadow: $box-shadow;
