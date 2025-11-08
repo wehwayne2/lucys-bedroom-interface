@@ -703,7 +703,7 @@ p {
 
     &:hover {
       transform: scale(1.1);
-      color: var(--text-primary);
+      color: var(--hover-highlight-color);
     }
   }
 }
@@ -1189,6 +1189,11 @@ p {
   top: 50%;
   margin-top: 50px;
   gap: 15px;
+    @include mobile {
+      top: 59%;
+    }
+
+
 }
 
 $animation-duration: 0.8s;
