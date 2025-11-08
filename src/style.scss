@@ -1150,6 +1150,10 @@ transition: width 0.1s linear;
   gap: 15px;
 }
 
+$border-radius-medium: 12px;
+$animation-duration: 0.8s;
+$cute-ease: cubic-bezier(0.65, -0.25, 0.35, 1.25);
+
 #enterBtn {
   padding: 5px 10px;
   font-size: 1.8rem;
@@ -1159,26 +1163,25 @@ transition: width 0.1s linear;
   border: solid 2.5px var(--text-primary);
   border-radius: $border-radius-medium;
   cursor: not-allowed;
-  transition: all 0.3s ease;
   z-index: 999;
-  display: none;
   opacity: 0;
+  visibility: hidden;
+  transform: translateY(30px) scale(0.95);
   transform-origin: center;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 #enterBtn.enabled {
   cursor: pointer;
   background: var(--button-bg);
   color: var(--card-bg);
-  display: block;
   opacity: 1;
-}
-
-#enterBtn-mute.enabled {
-  cursor: pointer;
-  color: var(--card-bg);
-  display: block;
-  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  animation: flyInFromBottom $animation-duration $cute-ease forwards;
+  // Remove animation-fill-mode after animation completes
+  animation-fill-mode: none;
+  transition: transform 0.3s ease;
 }
 
 #enterBtn-mute {
@@ -1189,20 +1192,41 @@ transition: width 0.1s linear;
   color: var(--card-bg);
   background-color: transparent;
   border: none;
-  transition: all 0.3s ease;
   z-index: 999;
   opacity: 0;
+  visibility: hidden;
+  transform: translateY(30px) scale(0.95);
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-#enterBtn:hover,
-#enterBtn-mute:hover {
-  transform: scale(1.1) translateY(-3px) !important;
-  transition: all 0.2s ease;
+#enterBtn-mute.enabled {
+  cursor: pointer;
+  color: var(--card-bg);
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  animation: flyInFromBottom $animation-duration $cute-ease forwards;
+  animation-fill-mode: none;
+  transition: transform 0.3s ease;
 }
 
-/* #enterBtn:active,
-#enterBtn-mute:active {
-  transform: scale(0.95) translateY(0px) !important;
-  transition: all 0.1s ease;
-} */
+#enterBtn.enabled:hover,
+#enterBtn-mute.enabled:hover {
+  transform: scale(1.1) translateY(-3px);
+}
 
+// ✨ Cute fly-in animation
+@keyframes flyInFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(80%) scale(0.9);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-5%) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
