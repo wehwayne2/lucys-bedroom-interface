@@ -186,7 +186,7 @@ p {
     }
 
     .modal-header {
-      position: relative; 
+      position: relative;
       display: flex;
       align-items: baseline;
       justify-content: center;
@@ -783,7 +783,8 @@ p {
 .loading-hidden {
   animation: 4s melt-leave forwards;
   pointer-events: none;
-  .loading-content{
+
+  .loading-content {
     width: 120%;
     height: 120%;
     inset: -30px;
@@ -794,9 +795,12 @@ p {
   0% {
     clip-path: path('M0 1080C80 1170 160 1215 240 1215C360 1215 351 1083 480 1080C609 1077 600 1451 720 1451C840 1451 840 1123 960 1080C1080 1037 1079 1278 1200 1278C1321 1278 1326 1062 1445 1080C1563 1098 1557 1350 1676 1350C1755 1350 1836 1260 1920 1080L1920 0L0 0L0 1080Z');
   }
+
   100% {
     clip-path: path('M0 0C80 -383 160 -574 240 -574C360 -574 351 -168 480 -271C609 -191 600 -456 720 -456C840 -456 840 -46 960 -68C1080 -90 1079 -542 1200 -542C1321 -542 1326 -212 1445 -204C1563 -195 1557 -508 1676 -508C1755 -508 1836 -339 1920 0L1920 0L0 0L0 0Z');
-  }//https://css-tricks.com/animating-with-clip-path/#aa-melt
+  }
+
+  //https://css-tricks.com/animating-with-clip-path/#aa-melt
 }
 
 .loading-content {
@@ -816,9 +820,9 @@ p {
     content: '';
     position: absolute;
 
-     inset: 0;
+    inset: 0;
     background:
-    
+
       radial-gradient(ellipse 10% 10% at 50% 50%,
         var(--ui-bg) 30%,
         transparent 1000%),
@@ -857,6 +861,20 @@ p {
 
   @include mobile {
     display: none;
+  }
+}
+
+.moving-image-wrapper-mobile{
+  display: none;
+    @include mobile {
+      display: block;
+  position: relative;
+  width: 40%;
+  min-width: 250px;
+  max-width: 700px;
+  height: fit-content;
+  margin: 0 auto;
+  z-index: 999999;
   }
 }
 
@@ -1145,16 +1163,16 @@ p {
     ry: $border-radius-medium;
   }
 
-.bar-fill {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  width: 0;
-  inset: 0px;
-  background: var(--button-bg);
-transition: width 0.1s linear;
-  border-right: solid $border var(--text-primary);
-}
+  .bar-fill {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 0;
+    inset: 0px;
+    background: var(--button-bg);
+    transition: width 0.1s linear;
+    border-right: solid $border var(--text-primary);
+  }
 }
 
 .enter-container {
@@ -1165,7 +1183,6 @@ transition: width 0.1s linear;
   gap: 15px;
 }
 
-$border-radius-medium: 12px;
 $animation-duration: 0.8s;
 $cute-ease: cubic-bezier(0.65, -0.25, 0.35, 1.25);
 
@@ -1236,10 +1253,12 @@ $cute-ease: cubic-bezier(0.65, -0.25, 0.35, 1.25);
     opacity: 0;
     transform: translateY(80%) scale(0.9);
   }
+
   60% {
     opacity: 1;
     transform: translateY(-5%) scale(1.05);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0) scale(1);
