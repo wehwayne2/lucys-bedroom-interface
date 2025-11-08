@@ -644,6 +644,7 @@ p {
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   border-right : 60px solid var(--button-bg);
+  box-shadow: $box-shadow;
   opacity: 1;
   transform: scaleX(1);
   transition: left 0.3s ease-in-out,
@@ -657,9 +658,12 @@ p {
     transform: scaleX(1);
     left: -100%;
 
-    svg rect {
-      display: none;
-    }
+  svg rect {
+    stroke-width: $stroke-width-big;
+    stroke: var(--text-primary);
+    rx: $border-radius-medium;
+    ry: $border-radius-medium;
+  }
   }
 }
 
@@ -681,13 +685,17 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 25px;
+  gap: 50px;
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin-left: 90px;
+    @include mobile {
+    margin-left: 0;
+  }
 
   li a {
     font-family: 'Sweetie Bubble Gum', cursive;
+     -webkit-text-stroke: 2.5px var(--text-primary);
     font-size: 2.5rem;
     color: var(--card-bg);
     text-decoration: none;
