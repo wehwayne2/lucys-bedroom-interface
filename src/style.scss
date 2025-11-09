@@ -698,17 +698,18 @@ p {
      -webkit-text-stroke: 2.5px var(--text-primary);
     font-size: 2.5rem;
     color: var(--card-bg);
+    display: block;
     text-decoration: none;
+    transform: scale(1) translateY(0px);
     transition: transform 0.3s ease, color 0.3s ease;
 
     &:hover {
-      transform: scale(1.1);
+      transform: scale(1.1) translateY(-3px);
       color: var(--hover-highlight-color);
+      border:solid 3px red;
     }
   }
 }
-
-
 
 /*========================================
                   widget                      
@@ -769,6 +770,7 @@ p {
   z-index: 99999 !important;
   transition: opacity 0.4s ease;
   background-color: var(--button-bg);
+ 
 
 }
 
@@ -793,9 +795,9 @@ p {
   pointer-events: none;
 
   .loading-content {
-    width: 120%;
-    height: 120%;
-    inset: -30px;
+    width: 110%;
+    height: 110%;//cant extend height dont know why
+    inset: 0px;
   }
 }
 
@@ -823,6 +825,10 @@ p {
   border-radius: $border-radius;
   inset: 0;
   @include centered;
+ padding-top: 25px;
+     @include mobile {
+       padding-top: 0px;
+    }
 
   &::before {
     content: '';
@@ -1162,7 +1168,9 @@ p {
   border-radius: $border-radius-medium;
   overflow: hidden;
   z-index: 10;
-
+@include mobile {
+  width: 60%;
+}
 
   svg rect {
     stroke-width: $stroke-width-medium;
@@ -1186,11 +1194,11 @@ p {
 .enter-container {
   @include centered;
   position: absolute;
-  top: 50%;
+  top: 52%;
   margin-top: 50px;
   gap: 15px;
     @include mobile {
-      top: 59%;
+      top: 60%;
     }
 
 
@@ -1211,7 +1219,7 @@ $cute-ease: cubic-bezier(0.65, -0.25, 0.35, 1.25);
   z-index: 999;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(30px) scale(0.95);
+  transform: translateY(0px) scale(0.95);
   transform-origin: center;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
@@ -1240,7 +1248,7 @@ $cute-ease: cubic-bezier(0.65, -0.25, 0.35, 1.25);
   z-index: 999;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(30px) scale(0.95);
+  transform: translateY(0px) scale(0.95);
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
@@ -1260,16 +1268,10 @@ $cute-ease: cubic-bezier(0.65, -0.25, 0.35, 1.25);
   transform: scale(1.1) translateY(-3px);
 }
 
-// ✨ Cute fly-in animation
 @keyframes flyInFromBottom {
   0% {
     opacity: 0;
     transform: translateY(80%) scale(0.9);
-  }
-
-  60% {
-    opacity: 1;
-    transform: translateY(-5%) scale(1.05);
   }
 
   100% {

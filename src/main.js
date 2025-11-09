@@ -177,7 +177,7 @@ function updateStatePosition(progress) {
 function simulateLoading() {
   let progress = 0;
   const interval = setInterval(() => {
-    let speed = Math.random() * 3;
+    let speed = Math.random() * 30;
     progress += speed;
     /*     statusText.textContent = `${Math.floor(progress)}%`; */
 
