@@ -156,6 +156,7 @@ document.addEventListener("click", (event) => {
 
 const bar = document.getElementById('bar-fill');
 const enterBtn = document.getElementById('enterBtn');
+const muteBtn = document.querySelector('#enterBtn-mute');
 
 const states = {
   slow: document.querySelector('.state.slow'),
@@ -189,7 +190,6 @@ else {
   enterBtn.classList.add('enabled');
   enterBtn.disabled = false;
   
-  const muteBtn = document.querySelector('#enterBtn-mute');
   muteBtn.classList.add('enabled'); 
   muteBtn.disabled = false;
   
@@ -204,11 +204,16 @@ else {
 
 simulateLoading();
 
-const LoadingPage = document.getElementById('loading-container')
-enterBtn.addEventListener('click', () => {
-  LoadingPage.classList.toggle('loading-hidden');
-  LoadingPage.addEventListener('animationend', () => {
-    LoadingPage.style.pointerEvents = 'none';
-    LoadingPage.style.opacity = '0';
+const loadingPage = document.getElementById('loading-container')
+let enterBtns = [enterBtn, muteBtn];
+
+enterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+  loadingPage.classList.toggle('loading-hidden');
+  loadingPage.addEventListener('animationend', () => {
+    loadingPage.style.pointerEvents = 'none';
+    loadingPage.style.opacity = '0';
   }, { once: true });
-});
+})
+})
+

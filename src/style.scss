@@ -106,10 +106,15 @@ p {
   transform: translate(-50%, -50%);
   max-width: 1200px;
   z-index: 999;
-
+@include mobile{
+  max-width: $mobile;
+  width: 100%;
+}
   &.hidden {
     display: none;
   }
+
+
 
   .close-btn {
     position: absolute;
@@ -179,7 +184,10 @@ p {
     background-size: $checkerboard-size $checkerboard-size;
     background-color: var(--secondary-ui-bg);
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-
+      @include mobile{
+        width: 90vw;
+        height: 95vh;
+      }
     svg rect {
       stroke-width: $stroke-width-big;
       stroke: var(--text-primary);
@@ -228,6 +236,9 @@ p {
       -webkit-overflow-scrolling: touch;
       overscroll-behavior: contain;
       touch-action: pan-y;
+            @include mobile{
+        height: fit-content;
+      }
 
       &::-webkit-scrollbar {
         width: 8px;
@@ -559,6 +570,12 @@ p {
   border-radius: $border-radius;
   box-shadow: $box-shadow;
   z-index: 999;
+    transform: scale(1) rotate(0deg);
+    transition: transform 0.5s ease;
+
+    &:hover {
+      transform: scale(1.05) rotate(-2deg);
+    }
 
   img {
     position: absolute;
