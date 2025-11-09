@@ -207,4 +207,8 @@ simulateLoading();
 const LoadingPage = document.getElementById('loading-container')
 enterBtn.addEventListener('click', () => {
   LoadingPage.classList.toggle('loading-hidden');
+  LoadingPage.addEventListener('animationend', () => {
+    LoadingPage.style.pointerEvents = 'none';
+    LoadingPage.style.opacity = '0';
+  }, { once: true });
 });

@@ -770,8 +770,6 @@ p {
   z-index: 99999 !important;
   transition: opacity 0.4s ease;
   background-color: var(--button-bg);
- 
-
 }
 
 @keyframes moveCheckerboard {
@@ -791,13 +789,24 @@ p {
 }
 
 .loading-hidden {
-  animation: 4s melt-leave forwards;
+  animation: 2s melt-leave forwards ease-in-out;
   pointer-events: none;
-
+@include mobile {
+   animation: 2s melt-leave-mobile forwards ease-in-out;
+}
   .loading-content {
     width: 110%;
     height: 110%;//cant extend height dont know why
     inset: 0px;
+  }
+}
+@keyframes melt-leave-mobile {
+  0% {
+    clip-path: path('M0 1080 C480 1200, 1440 1200, 1920 1080 L1920 0 L0 0 Z');
+  }
+
+  100% {
+    clip-path: path('M0 -200 C480 -200, 1440 -200, 1920 -200 L1920 -200 L0 -200 Z');
   }
 }
 
@@ -827,7 +836,7 @@ p {
   @include centered;
  padding-top: 25px;
      @include mobile {
-       padding-top: 0px;
+       padding-top: 25px;
     }
 
   &::before {
@@ -1198,14 +1207,13 @@ p {
   margin-top: 50px;
   gap: 15px;
     @include mobile {
-      top: 60%;
+       @include centered;
+  position: absolute;
+  top: 52%;
+  margin-top: 130px;
+  gap: 15px;
     }
-
-
 }
-
-$animation-duration: 0.8s;
-$cute-ease: cubic-bezier(0.65, -0.25, 0.35, 1.25);
 
 #enterBtn {
   padding: 5px 10px;
@@ -1213,28 +1221,14 @@ $cute-ease: cubic-bezier(0.65, -0.25, 0.35, 1.25);
   font-family: 'Sweetie Bubble Gum', cursive;
   -webkit-text-stroke: 2px var(--text-primary);
   color: var(--card-bg);
+  background-color: var(--button-bg);
   border: solid 2.5px var(--text-primary);
   border-radius: $border-radius-medium;
   cursor: not-allowed;
   z-index: 999;
+  transform: translateY(100%);
   opacity: 0;
-  visibility: hidden;
-  transform: translateY(0px) scale(0.95);
-  transform-origin: center;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-#enterBtn.enabled {
-  cursor: pointer;
-  background: var(--button-bg);
-  color: var(--card-bg);
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0) scale(1);
-  animation: flyInFromBottom $animation-duration $cute-ease forwards;
-  // Remove animation-fill-mode after animation completes
-  animation-fill-mode: none;
-  transition: transform 0.3s ease;
+transition: transform 1s ease, opacity 1s ease;
 }
 
 #enterBtn-mute {
@@ -1246,36 +1240,19 @@ $cute-ease: cubic-bezier(0.65, -0.25, 0.35, 1.25);
   background-color: transparent;
   border: none;
   z-index: 999;
+  transform: translateY(100%);
   opacity: 0;
-  visibility: hidden;
-  transform: translateY(0px) scale(0.95);
-  transition: transform 0.3s ease, opacity 0.3s ease;
+transition: transform 1s ease, opacity 1s ease;
 }
 
+#enterBtn.enabled,
 #enterBtn-mute.enabled {
   cursor: pointer;
-  color: var(--card-bg);
   opacity: 1;
-  visibility: visible;
-  transform: translateY(0) scale(1);
-  animation: flyInFromBottom $animation-duration $cute-ease forwards;
-  animation-fill-mode: none;
-  transition: transform 0.3s ease;
+  transform: translateY(0);
 }
 
 #enterBtn.enabled:hover,
 #enterBtn-mute.enabled:hover {
   transform: scale(1.1) translateY(-3px);
-}
-
-@keyframes flyInFromBottom {
-  0% {
-    opacity: 0;
-    transform: translateY(80%) scale(0.9);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
 }
