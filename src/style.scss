@@ -136,12 +136,19 @@ p {
     transform: scale(1) rotate(0deg);
     transition: transform 0.5s ease;
 
-    &:hover {
-      transform: scale(1.1) rotate(-5deg);
-    }
+
 
     @include mobile {
-      display: none;
+      top: 0;
+      left: 0;
+      transform: translate(-40%, -80%);
+
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .close-btn:hover {
+        transform: scale(1.1) rotate(-5deg);
+      }
     }
 
     img {
@@ -843,10 +850,13 @@ p {
     animation: 2s melt-leave-mobile forwards ease-in-out;
   }
 
-  .loading-content {
-    width: 110%;
-    height: 110%; //cant extend height dont know why
-    inset: -3px;
+  /* Apply to all browsers except Firefox */
+  @supports (-webkit-touch-callout: none) {
+    .loading-content {
+      width: 110%;
+      height: 110%;
+      inset: -3px;
+    }
   }
 }
 
@@ -938,26 +948,37 @@ p {
   }
 }
 
+.moving-mobile-wrapper {
+  display: block;
+  position: relative;
+  width: 60%;
+  max-width: 700px;
+  height: fit-content;
+  margin: 0 auto;
+  z-index: 999;
+}
+
 .mobile-lucy-icon {
   display: none;
   position: absolute;
 
+
   @include mobile {
     display: block;
     /*  background-color: var(--secondary-ui-bg); */
-    padding: 10px;
-    width: 150px;
-    height: 150px;
     border-radius: 50%;
 
-    top: 30%;
-
+  transition:
+    /*     opacity 0.1s ease, */
+    left 0.1s linear;
+  pointer-events: none;
     img {
       position: absolute;
-      top: -10px;
-      left: -10px;
-      width: 160px;
-      height: 160px;
+      top: -30px;
+      left: -60px;
+     transform-origin: bottom;
+      width: 80px;
+      height: 80px;
       animation: lucyMobileAnimation 3s ease-in-out infinite;
     }
   }
@@ -1267,7 +1288,6 @@ p {
 
   @include mobile {
     width: 60%;
-    top: 50px;
   }
 
   svg rect {

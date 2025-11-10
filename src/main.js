@@ -158,7 +158,8 @@ const muteBtn = document.querySelector('#enterBtn-mute');
 const states = {
   slow: document.querySelector('.state.slow'),
   fast: document.querySelector('.state.fast'),
-  finished: document.querySelector('.state.finished')
+  finished: document.querySelector('.state.finished'),
+  mobileLucy: document.querySelector('.mobile-lucy-icon')
 };
 
 function showState(stateName) {
