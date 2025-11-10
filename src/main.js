@@ -94,18 +94,18 @@ function hideModal() {
     }
   });
 
-gsap.to(modal, {
-  y: "100vh",     
-  opacity: 0,      
-  rotation: 0,     
-  duration: 0.6,
-  ease: "power2.in", 
-  delay: 0.1,
-  onComplete: () => {
-    modal.classList.add('hidden');
-    gsap.set(modal, { clearProps: "all" });
-  }
-});
+  gsap.to(modal, {
+    x: "100vw",
+    opacity: 0,
+    rotation: 0,
+    duration: 0.6,
+    ease: "power2.in",
+    delay: 0.1,
+    onComplete: () => {
+      modal.classList.add('hidden');
+      gsap.set(modal, { clearProps: "all" });
+    }
+  });
 }
 
 
@@ -150,10 +150,7 @@ document.addEventListener("click", (event) => {
   }
 });
 
-
-
 /*----------------------- loading page-----------------------*/
-
 const bar = document.getElementById('bar-fill');
 const enterBtn = document.getElementById('enterBtn');
 const muteBtn = document.querySelector('#enterBtn-mute');
@@ -178,24 +175,24 @@ function updateStatePosition(progress) {
 function simulateLoading() {
   let progress = 0;
   const interval = setInterval(() => {
-    let speed = Math.random() * 30;
+    let speed = Math.random() * 3;
     progress += speed;
     /*     statusText.textContent = `${Math.floor(progress)}%`; */
 
     if (progress < 30) showState('slow');
     else if (progress < 100) showState('fast');
-else {
-  progress = 100;
-  showState('finished');
-  enterBtn.classList.add('enabled');
-  enterBtn.disabled = false;
-  
-  muteBtn.classList.add('enabled'); 
-  muteBtn.disabled = false;
-  
-  clearInterval(interval);
+    else {
+      progress = 100;
+      showState('finished');
+      enterBtn.classList.add('enabled');
+      enterBtn.disabled = false;
 
-}
+      muteBtn.classList.add('enabled');
+      muteBtn.disabled = false;
+
+      clearInterval(interval);
+
+    }
     progress = Math.min(progress, 100)//for better simulation
     bar.style.width = progress + '%';
     updateStatePosition(progress)
@@ -209,11 +206,11 @@ let enterBtns = [enterBtn, muteBtn];
 
 enterBtns.forEach(btn => {
   btn.addEventListener('click', () => {
-  loadingPage.classList.toggle('loading-hidden');
-  loadingPage.addEventListener('animationend', () => {
-    loadingPage.style.pointerEvents = 'none';
-    loadingPage.style.opacity = '0';
-  }, { once: true });
-})
+    loadingPage.classList.toggle('loading-hidden');
+    loadingPage.addEventListener('animationend', () => {
+      loadingPage.style.pointerEvents = 'none';
+      loadingPage.style.visibility = 'hidden';
+    }, { once: true });
+  })
 })
 
