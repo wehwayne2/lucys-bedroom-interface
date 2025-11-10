@@ -213,7 +213,3 @@ enterBtns.forEach(btn => {
     }, { once: true });
   })
 })
-
-window.addEventListener("load", () => {
-  document.body.classList.add("loaded");
-});
