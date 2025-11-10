@@ -958,39 +958,38 @@ p {
   z-index: 999;
 }
 
-.mobile-lucy-icon {
-  display: none;
+/* base state — all Lucy states hidden */
+.mobile-lucy-slow,
+.mobile-lucy-fast,
+.mobile-lucy-finished {
   position: absolute;
-
-
-  @include mobile {
-    display: block;
-    /*  background-color: var(--secondary-ui-bg); */
-    border-radius: 50%;
-
-  transition:
-    /*     opacity 0.1s ease, */
-    left 0.1s linear;
+  opacity: 0;
+  visibility: hidden;
+  transition: left 0.1s linear;
   pointer-events: none;
-    img {
-      position: absolute;
-      top: -30px;
-      left: -60px;
-     transform-origin: bottom;
-      width: 80px;
-      height: 80px;
-      animation: lucyMobileAnimation 3s ease-in-out infinite;
-    }
-  }
+}
+
+.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-lucy-slow img,
+.mobile-lucy-fast img,
+.mobile-lucy-finished img {
+  position: absolute;
+  top: -30px;
+  left: -60px;
+  width: 80px;
+  height: 80px;
+  transform-origin: bottom;
+  animation: lucyMobileAnimation 3s ease-in-out infinite;
 }
 
 @keyframes lucyMobileAnimation {
-
-  0%,
-  100% {
+  0%, 100% {
     transform: rotate(0deg);
   }
-
   50% {
     transform: rotate(3deg);
   }

@@ -155,12 +155,26 @@ const bar = document.getElementById('bar-fill');
 const enterBtn = document.getElementById('enterBtn');
 const muteBtn = document.querySelector('#enterBtn-mute');
 
-const states = {
-  slow: document.querySelector('.state.slow'),
-  fast: document.querySelector('.state.fast'),
-  finished: document.querySelector('.state.finished'),
-  mobileLucy: document.querySelector('.mobile-lucy-icon')
-};
+function getStates() {
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+  if (isMobile) {
+    // Only 2 states on mobile
+    return {
+      slow: document.querySelector('.mobile-lucy-slow'),
+      fast: document.querySelector('.mobile-lucy-fast'),
+      finished: document.querySelector('.mobile-lucy-finished')
+    };
+  } else {
+    // 3 states on desktop
+    return {
+      slow: document.querySelector('.state.slow'),
+      fast: document.querySelector('.state.fast'),
+      finished: document.querySelector('.state.finished')
+    };
+  }
+}
+
+let states = getStates();
 
 function showState(stateName) {
   Object.values(states).forEach(s => s.classList.remove('visible'));
