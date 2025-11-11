@@ -846,6 +846,11 @@ p {
       }
     }
   }
+  .mobile-two-switchers {
+    display: flex;
+    @include centered;
+    flex-direction: column;
+  }
   .switch-wrapper, .sound-switch-wrapper {
     position: static;
     display: none;
@@ -1443,6 +1448,7 @@ p {
 
   @include mobile {
     @include centered;
+/*     flex-direction: column-reverse; */
     position: absolute;
     top: 45%;
     margin-top: 130px;
