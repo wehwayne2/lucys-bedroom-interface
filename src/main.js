@@ -226,16 +226,20 @@ function simulateLoading() {
 
 simulateLoading();
 
-const loadingPage = document.getElementById('loading-container')
+let loadingPage = document.getElementById('loading-container');
+let waveStroke = document.querySelector('.wave-stroke');
 let enterBtns = [enterBtn, muteBtn];
 
 enterBtns.forEach(btn => {
   btn.addEventListener('click', () => {
     loadingPage.classList.toggle('loading-hidden');
+    waveStroke.classList.toggle('wave-stroke-hidden');
     loadingPage.addEventListener('animationend', () => {
       loadingPage.style.pointerEvents = 'none';
       loadingPage.style.visibility = 'hidden';
       loadingPage.style.opacity = '0';
+
+      waveStroke.style.opacity = '0';
     }, { once: true });
   })
 })

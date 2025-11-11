@@ -929,6 +929,38 @@ p {
 }
 
 /*========================================
+               wave-stroke                   
+========================================*/
+.wave-stroke {
+    position: fixed;
+  inset: 0;
+  @include centered;
+  flex-direction: column;
+  z-index: 99998;
+  transition: opacity 0.4s ease;
+  background-color: var(--text-primary);
+  top: $border;
+  pointer-events: none;
+}
+
+.wave-stroke-hidden {
+  animation: 2.2s melt-leave forwards ease-in-out;
+  pointer-events: none;
+
+  @include mobile {
+    animation: 2.5s melt-leave-mobile forwards ease-in-out;
+  }
+
+  /* Apply to all browsers except Firefox */
+  @supports (-webkit-touch-callout: none) {
+    .loading-content {
+      width: 110%;
+      height: 110%;
+      inset: -3px;
+    }
+  }
+}
+/*========================================
                loading                      
 ========================================*/
 .loading-container {
@@ -958,11 +990,11 @@ p {
 }
 
 .loading-hidden {
-  animation: 2s melt-leave forwards ease-in-out;
+  animation: 2.2s melt-leave forwards ease-in-out;
   pointer-events: none;
 
   @include mobile {
-    animation: 2s melt-leave-mobile forwards ease-in-out;
+    animation: 2.5s melt-leave-mobile forwards ease-in-out;
   }
 
   /* Apply to all browsers except Firefox */
@@ -977,11 +1009,11 @@ p {
 
 @keyframes melt-leave-mobile {
   0% {
-    clip-path: path('M0 1080 C480 1200, 1440 1200, 1920 1080 L1920 0 L0 0 Z');
+    clip-path: path('M -1 864 C 187 1586 640 674 999 945 C 1425 1129 1461 400 1920 1080 L 1920 0 L 0 0 Z');
   }
 
   100% {
-    clip-path: path('M0 -200 C480 -200, 1440 -200, 1920 -200 L1920 -200 L0 -200 Z');
+    clip-path: path('M0 -200 C480 -200, 720 -400, 960 -200 C1200 0, 1440 -400, 1920 -200 L1920 -200 L0 -200 Z');
   }
 }
 
@@ -991,9 +1023,9 @@ p {
   }
 
   100% {
-    clip-path: path('M0 0C80 -383 160 -574 240 -574C360 -574 351 -168 480 -271C609 -191 600 -456 720 -456C840 -456 840 -46 960 -68C1080 -90 1079 -542 1200 -542C1321 -542 1326 -212 1445 -204C1563 -195 1557 -508 1676 -508C1755 -508 1836 -339 1920 0L1920 0L0 0L0 0Z');
+    clip-path: path('M 0 0 C 80 -383 160 -574 240 -574 C 360 -574 351 -168 480 -271 C 586 -370 600 -456 720 -456 C 840 -456 840 -46 960 -68 C 1080 -90 1079 -542 1200 -542 C 1321 -542 1326 -212 1445 -204 C 1563 -195 1557 -508 1676 -508 C 1755 -508 1836 -339 1920 0 L 1920 0 L 0 0 L 0 0 Z');
   }
-
+//https://yqnn.github.io/svg-path-editor/
   //https://css-tricks.com/animating-with-clip-path/#aa-melt
 }
 
