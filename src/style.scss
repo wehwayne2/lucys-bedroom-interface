@@ -949,16 +949,20 @@ p {
 }
 
 .moving-mobile-wrapper {
-  display: block;
+  display: none;
+
+    @include mobile {
+      display: block;
   position: relative;
   width: 60%;
   max-width: 700px;
   height: fit-content;
   margin: 0 auto;
   z-index: 999;
+  }
+
 }
 
-/* base state — all Lucy states hidden */
 .mobile-lucy-slow,
 .mobile-lucy-fast,
 .mobile-lucy-finished {
@@ -975,13 +979,22 @@ p {
 }
 
 .mobile-lucy-slow img,
-.mobile-lucy-fast img,
 .mobile-lucy-finished img {
   position: absolute;
   top: -30px;
   left: -60px;
   width: 80px;
   height: 80px;
+  transform-origin: bottom;
+  animation: lucyMobileAnimation 3s ease-in-out infinite;
+}
+
+.mobile-lucy-fast img {
+    position: absolute;
+  top: -65px;
+  left: -60px;
+  width: 110px;
+  height: 110px;
   transform-origin: bottom;
   animation: lucyMobileAnimation 3s ease-in-out infinite;
 }

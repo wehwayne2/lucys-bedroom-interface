@@ -158,14 +158,12 @@ const muteBtn = document.querySelector('#enterBtn-mute');
 function getStates() {
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
   if (isMobile) {
-    // Only 2 states on mobile
     return {
       slow: document.querySelector('.mobile-lucy-slow'),
       fast: document.querySelector('.mobile-lucy-fast'),
       finished: document.querySelector('.mobile-lucy-finished')
     };
   } else {
-    // 3 states on desktop
     return {
       slow: document.querySelector('.state.slow'),
       fast: document.querySelector('.state.fast'),
@@ -175,6 +173,10 @@ function getStates() {
 }
 
 let states = getStates();
+
+window.addEventListener('resize', () => {
+  states = getStates();
+});
 
 function showState(stateName) {
   Object.values(states).forEach(s => s.classList.remove('visible'));
@@ -225,6 +227,7 @@ enterBtns.forEach(btn => {
     loadingPage.addEventListener('animationend', () => {
       loadingPage.style.pointerEvents = 'none';
       loadingPage.style.visibility = 'hidden';
+      loadingPage.style.opacity = '0';
     }, { once: true });
   })
 })
