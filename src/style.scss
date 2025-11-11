@@ -213,7 +213,7 @@ p {
       justify-content: center;
       width: 100%;
       height: auto;
-      padding: 30px 0 10px 0;
+      padding: 30px 0 20px 0;
       background-color: var(--accent);
       border-radius: $border-radius $border-radius 0 0;
       border-bottom: solid var(--text-primary) $stroke-width-big-bottom;
@@ -232,6 +232,9 @@ p {
       h2 {
         padding: 12px 15px 7px 15px;
         text-align: center;
+        @include mobile {
+          font-size: 2rem;
+        }
       }
     }
 

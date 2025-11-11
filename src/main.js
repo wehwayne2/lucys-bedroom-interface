@@ -118,7 +118,6 @@ function hideModal() {
   });
 }
 
-
 closeBtn.addEventListener('click', (event) => {
   hideModal();
 });
