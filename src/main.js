@@ -1,6 +1,8 @@
 import './style.scss'
 import gsap from "gsap";
 
+let speedFast = 2000;
+
 /*----------------------- theme based on dayperiod & theme toggle-----------------------*/
 const toggleButton = document.getElementById('theme-toggle');
 const root = document.documentElement;
@@ -192,7 +194,7 @@ function updateStatePosition(progress) {
 function simulateLoading() {
   let progress = 0;
   const interval = setInterval(() => {
-    let speed = Math.random() * 3;
+    let speed = Math.random() * speedFast;
     progress += speed;
     /*     statusText.textContent = `${Math.floor(progress)}%`; */
 

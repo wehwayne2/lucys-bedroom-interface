@@ -605,11 +605,13 @@ p {
   transform: scale(1) rotate(0deg);
   transition: transform 0.5s ease;
 
-  &:hover {
-    transform: scale(1.05) rotate(-2deg);
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: scale(1.05) rotate(-2deg);
 
-    #menu-icon .all-line .icon {
-      background-color: var(--hover-highlight-color);
+      #menu-icon .all-line .icon {
+        background-color: var(--hover-highlight-color);
+      }
     }
   }
 
@@ -665,6 +667,47 @@ p {
       .div-3 {
         top: 15px;
         transform: rotate(-45deg);
+      }
+    }
+  }
+
+  @include mobile {
+    width: 65px;
+    height: 65px;
+
+    .menu-icon {
+      width: 40px;
+      height: 40px;
+      top: 2px;
+
+      .icon {
+        &.div-1 {
+          top: 0px;
+        }
+
+        &.div-2 {
+          top: 13px;
+        }
+
+        &.div-3 {
+          top: 26px;
+        }
+      }
+
+      &.open {
+        .div-1 {
+          top: 13px;
+          transform: rotate(45deg);
+        }
+
+        .div-2 {
+          opacity: 0;
+        }
+
+        .div-3 {
+          top: 13px;
+          transform: rotate(-45deg);
+        }
       }
     }
   }
@@ -738,7 +781,7 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 50px;
+  gap: 40px;
   list-style: none;
   padding: 0;
   margin-left: 90px;
@@ -747,22 +790,55 @@ p {
     margin-left: 0;
   }
 
-  li a {
-    font-family: 'Sweetie Bubble Gum', cursive;
-    -webkit-text-stroke: 2.5px var(--text-primary);
-    font-size: 2.5rem;
-    color: var(--card-bg);
-    display: block;
-    text-decoration: none;
-    transform: scale(1) translateY(0px);
-    transition: transform 0.3s ease, color 0.3s ease;
+  li {
+    padding: 15px;
+    width: 200px;
+    @include centered;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    /*  needchange */
+    border-radius: $border-radius-medium;
+ @media (hover: hover) and (pointer: fine) {
+          &:hover {
+ background-color: rgba($color: #ffffff, $alpha: 0.15);
+  }}
 
-    &:hover {
-      transform: scale(1.1) translateY(-3px);
-      color: var(--hover-highlight-color);
-      border: solid 3px red;
+    svg rect {
+      opacity: 0;
+      stroke-width: $stroke-width-medium;
+      stroke: var(--text-primary);
+      rx: $border-radius-medium;
+      ry: $border-radius-medium;
+      transition: opacity 0.4s ease;
+
+      @include mobile {
+        display: none;
+      }
+    }
+
+      &:hover svg rect {
+    opacity: 0.9;
+  }
+
+    a {
+      font-family: 'Sweetie Bubble Gum', cursive;
+      -webkit-text-stroke: 2.5px var(--text-primary);
+      font-size: 2.5rem;
+      color: var(--card-bg);
+      display: block;
+      text-decoration: none;
+      transform: scale(1) translateY(0px);
+      transition: transform 0.3s ease, color 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05);
+        color: var(--hover-highlight-color);
+
+      }
     }
   }
+
 }
 
 /*========================================
@@ -951,14 +1027,14 @@ p {
 .moving-mobile-wrapper {
   display: none;
 
-    @include mobile {
-      display: block;
-  position: relative;
-  width: 60%;
-  max-width: 700px;
-  height: fit-content;
-  margin: 0 auto;
-  z-index: 999;
+  @include mobile {
+    display: block;
+    position: relative;
+    width: 60%;
+    max-width: 700px;
+    height: fit-content;
+    margin: 0 auto;
+    z-index: 999;
   }
 
 }
@@ -990,7 +1066,7 @@ p {
 }
 
 .mobile-lucy-fast img {
-    position: absolute;
+  position: absolute;
   top: -65px;
   left: -60px;
   width: 110px;
@@ -1000,9 +1076,12 @@ p {
 }
 
 @keyframes lucyMobileAnimation {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: rotate(0deg);
   }
+
   50% {
     transform: rotate(3deg);
   }
