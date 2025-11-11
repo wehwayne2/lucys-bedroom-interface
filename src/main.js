@@ -1,10 +1,11 @@
 import './style.scss'
 import gsap from "gsap";
 
-let speedFast = 2000;
+let speedFast = 3;
 
 /*----------------------- theme based on dayperiod & theme toggle-----------------------*/
-const toggleButton = document.getElementById('theme-toggle');
+const toggleThemeDesktop = document.getElementById('theme-toggle');
+const toggleThemeMobile = document.getElementById('theme-toggle-mobile');
 const root = document.documentElement;
 
 const savedTheme = localStorage.getItem('theme');
@@ -23,7 +24,7 @@ if (savedTheme) {
     } */
 }
 
-toggleButton.addEventListener('click', () => {
+function setTheme() {
   const currentTheme = root.getAttribute('data-theme');
   if (currentTheme === 'dark') {
     root.removeAttribute('data-theme');
@@ -32,7 +33,14 @@ toggleButton.addEventListener('click', () => {
     root.setAttribute('data-theme', 'dark');
     localStorage.setItem('theme', 'dark');
   }
-});
+}
+
+[toggleThemeDesktop, toggleThemeMobile].forEach(toggle => {
+    toggle.addEventListener('click', (e) => {
+    setTheme(e.target.checked);
+  });
+})
+
 
 /*----------------------- fix redraw issue for firebox -----------------------*/
 const isFirefox = typeof InstallTrigger !== 'undefined';
@@ -112,7 +120,6 @@ function hideModal() {
 
 
 closeBtn.addEventListener('click', (event) => {
-  event.stopPropagation(); //important
   hideModal();
 });
 
