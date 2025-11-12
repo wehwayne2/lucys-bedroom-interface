@@ -36,7 +36,7 @@ function setTheme() {
 }
 
 [toggleThemeDesktop, toggleThemeMobile].forEach(toggle => {
-    toggle.addEventListener('click', (e) => {
+  toggle.addEventListener('click', (e) => {
     setTheme(e.target.checked);
   });
 })
@@ -225,9 +225,12 @@ function simulateLoading() {
 }
 
 window.addEventListener('load', () => {
-  states = getStates();
-  updateStatePosition(0);
-  simulateLoading();
+  // wait all scss
+  requestAnimationFrame(() => {
+    states = getStates();
+    updateStatePosition(0);
+    simulateLoading();
+  });
 });
 
 let loadingPage = document.getElementById('loading-container');
