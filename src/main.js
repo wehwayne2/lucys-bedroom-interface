@@ -224,7 +224,11 @@ function simulateLoading() {
   }, 100);
 }
 
-simulateLoading();
+window.addEventListener('load', () => {
+  states = getStates();
+  updateStatePosition(0);
+  simulateLoading();
+});
 
 let loadingPage = document.getElementById('loading-container');
 let waveStroke = document.querySelector('.wave-stroke');
