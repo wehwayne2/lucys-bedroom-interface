@@ -186,6 +186,27 @@ window.addEventListener('resize', () => {
   states = getStates();
 });
 
+function waitForStableLayout() {
+  return new Promise(resolve => {
+    const imgs = document.querySelectorAll(
+      '.state img, .mobile-lucy-slow img, .mobile-lucy-fast img, .mobile-lucy-finished img'
+    );
+
+    const promises = [...imgs].map(img => {
+      if (img.complete) return Promise.resolve();
+      return new Promise(res => (img.onload = res));
+    });
+
+    Promise.all(promises).then(() => {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          resolve();
+        });
+      });
+    });
+  });
+}
+
 function showState(stateName) {
   Object.values(states).forEach(s => s.classList.remove('visible'));
   states[stateName].classList.add('visible');
@@ -225,11 +246,10 @@ function simulateLoading() {
 }
 
 window.addEventListener('load', () => {
-  // wait all scss
-  requestAnimationFrame(() => {
+  waitForStableLayout().then(() => {
     states = getStates();
-    updateStatePosition(0);
     simulateLoading();
+    updateStatePosition(0);
   });
 });
 
